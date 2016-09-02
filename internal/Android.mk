@@ -10,7 +10,7 @@ LOCAL_SRC_FILES := $(call all-java-files-under, src/org) \
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE := telephony-ext
 
-include $(BUILD_JAVA_LIBRARY)
+include $(BUILD_STATIC_JAVA_LIBRARY)
 
 # Include subdirectory makefiles
 # ============================================================
