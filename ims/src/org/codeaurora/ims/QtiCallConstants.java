@@ -184,6 +184,9 @@ public class QtiCallConstants {
     /* Downgrade of a vt call due to generic error */
     public static final int CAUSE_CODE_SESSION_MODIFY_DOWNGRADE_GENERIC_ERROR = 11;
 
+    /* Downgrade of a vt call generic ex: remote user accepted as volte call */
+    public static final int CAUSE_CODE_SESSION_MODIFY_DOWNGRADE_GENERIC = 200;
+
     /* Session modification cause extra key name */
     public static final String SESSION_MODIFICATION_CAUSE_EXTRA_KEY = "SessionModificationCause";
 
