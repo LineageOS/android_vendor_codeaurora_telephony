@@ -1,3 +1,5 @@
+ifneq ($(BOARD_PROVIDES_IMS_EXTENSIONS),true)
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -15,3 +17,5 @@ include $(BUILD_JAVA_LIBRARY)
 # Include subdirectory makefiles
 # ============================================================
 include $(call all-makefiles-under,$(LOCAL_PATH))
+
+endif # BOARD_PROVIDES_IMS_EXTENSIONS
