@@ -241,6 +241,12 @@ public class QtiImsExtManager {
             if (mQtiImsExt == null) {
                 throw new QtiImsException("ImsService is not running");
             }
+
+            try {
+                b.linkToDeath(()->this.mQtiImsExt=null, 0);
+            } catch (RemoteException e) {
+            }
+
             return mQtiImsExt;
         }
         return mQtiImsExt;
