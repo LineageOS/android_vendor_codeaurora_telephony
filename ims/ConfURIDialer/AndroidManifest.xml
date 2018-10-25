@@ -36,6 +36,9 @@
     package="com.qti.confuridialer"
     android:sharedUserId="android.uid.phone">
 
+    <uses-sdk android:minSdkVersion="23"
+        android:targetSdkVersion="27"/>
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
