@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, 2019-2020 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2019-2021 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -311,15 +311,22 @@ public class QtiCallConstants {
     // Recorder Auto-Scaling Factor
     public static final int RECORDER_SCALING_FACTOR = 8;
 
+    // Refer to ImsConfigImplBase CONFIG_RESULT_* codes
+    public static final int CONFIG_RESULT_NOT_SUPPORTED = 2;
     /**
-     * Whether auto reject is enabled for IMS calls on a sub when high priority data
+     * Auto reject call options - for IMS calls on a sub when high priority data
      * is on the other sub
-     * Type: int (0 for disabled, 1 for enabled)
+     * Type: int (0 for default, 1 for auto reject, 2 for allow alerting)
      */
-    public static final String IMS_AUTO_REJECT = "qti.settings.auto_reject";
-    // Auto reject call modes
-    public static final int AUTO_REJECT_CALL_DISABLED = 0;
-    public static final int AUTO_REJECT_CALL_ENABLED = 1;
+    public static final String IMS_AUTO_REJECT_MODE = "qti.settings.auto_reject";
+    // auto reject call modes
+    // user is notified of incoming call
+    public static final int AR_MODE_ALLOW_INCOMING = 0;
+    // incoming call is auto rejected
+    public static final int AR_MODE_AUTO_REJECT = 1;
+    // user is usually alerted of incoming call but auto rejected in certain cases
+    // modem may have some optimization
+    public static final int AR_MODE_ALLOW_ALERTING = 2;
     // Auto reject call UI item, avoid conflicting values from ImsCallUtils.ConfigItem
     public static final int AUTO_REJECT_CALL_MODE = 1000;
     public static final int QTI_CONFIG_SMS_APP = 1001;
@@ -395,5 +402,30 @@ public class QtiCallConstants {
     public static final int REG_ERROR_GEO_LOCATION_STATUS_ENGINE_LOCK = 2002;
     // This is success case, received when all the GPS errors are resolved.
     public static final int REG_ERROR_GEO_LOCATION_STATUS_RESOLVED = 2003;
-}
 
+    /* CRS type extra key */
+    public static final String EXTRA_CRS_TYPE = "crsType";
+    /* Original call type extra key */
+    public static final String EXTRA_ORIGINAL_CALL_TYPE = "originalCallType";
+    /* Slience UI before CRS RTP come extra key */
+    public static final String EXTRA_IS_PREPARATORY = "isPreparatory";
+    //INVALID if CrsData is invalid, play local ring.
+    public static final int CRS_TYPE_INVALID = 0;
+    //AUDIO if only audio will be played.
+    public static final int CRS_TYPE_AUDIO = 1 << 0;
+    //VIDEO if only video will be played.
+    public static final int CRS_TYPE_VIDEO = 1 << 1;
+
+    //Call progress info constants.
+    public static final int CALL_PROGRESS_INFO_TYPE_INVALID = -1;
+    public static final int CALL_PROGRESS_INFO_TYPE_CALL_REJ_Q850 = 0;
+    public static final int CALL_PROGRESS_INFO_TYPE_CALL_WAITING = 1;
+    public static final int CALL_PROGRESS_INFO_TYPE_CALL_FORWARDING = 2;
+    public static final int CALL_PROGRESS_INFO_TYPE_REMOTE_AVAILABLE = 3;
+    //Call progress info call rejection code
+    public static final int CALL_REJECTION_CODE_INVALID = -1;
+    //Call progress info extras
+    public static final String EXTRAS_CALL_PROGRESS_INFO_TYPE = "CallProgInfoType";
+    public static final String EXTRAS_CALL_PROGRESS_REASON_CODE = "CallProgReasonCode";
+    public static final String EXTRAS_CALL_PROGRESS_REASON_TEXT = "CallProgReasonText";
+}
