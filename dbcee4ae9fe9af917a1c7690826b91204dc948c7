@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e3647b_6593c416",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2021-12-05T20:56:58Z",
+      "side": 1,
+      "message": "return getAutoRejectMode(contentResolver, phoneId);",
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
