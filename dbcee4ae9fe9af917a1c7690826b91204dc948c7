@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8027ec1a_76f7c04d",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:30:17Z",
+      "side": 1,
+      "message": "Is this worth adding back? If83119b0089861ae8d14981ee37772cc95d20586 was enough for ims.apk to work fine on xiaomi msm8998 (ims.apk from xiaomi jasmine on android 11), xiaomi sm6150 (ims.apk from xiaomi android 11) and on nubia sm8150 (ims.apk from nubia z20 android 11). All of these ims.apk\u0027s don\u0027t reference setAutoReject but reference getAutoReject.",
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2bfd39e_4996e9d7",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:30:17Z",
+      "side": 1,
+      "message": "This is a string. Where does this come from? Can\u0027t we just pass phoneId?",
+      "range": {
+        "startLine": 663,
+        "startChar": 43,
+        "endLine": 663,
+        "endChar": 80
+      },
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398590dd_aefd5ea6",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:30:17Z",
+      "side": 1,
+      "message": "This should be `QtiCallConstants.AR_MODE_AUTO_REJECT : QtiCallConstants.AR_MODE_ALLOW_INCOMING`",
+      "range": {
+        "startLine": 664,
+        "startChar": 25,
+        "endLine": 664,
+        "endChar": 69
+      },
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57e3647b_6593c416",
         "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
         "patchSetId": 1
