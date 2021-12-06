@@ -41,6 +41,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d7a708_90a73308",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2bfd39e_4996e9d7",
+      "range": {
+        "startLine": 663,
+        "startChar": 43,
+        "endLine": 663,
+        "endChar": 80
+      },
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "398590dd_aefd5ea6",
@@ -64,6 +88,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "403dd8cb_e13f9692",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "398590dd_aefd5ea6",
+      "range": {
+        "startLine": 664,
+        "startChar": 25,
+        "endLine": 664,
+        "endChar": 69
+      },
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57e3647b_6593c416",
@@ -77,6 +125,24 @@
       "writtenOn": "2021-12-05T20:56:58Z",
       "side": 1,
       "message": "return getAutoRejectMode(contentResolver, phoneId);",
+      "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4378b0_22ffb5a8",
+        "filename": "ims/ims-ext-common/src/org/codeaurora/ims/utils/QtiImsExtUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-06T16:49:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57e3647b_6593c416",
       "revId": "dbcee4ae9fe9af917a1c7690826b91204dc948c7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
