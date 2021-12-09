@@ -16,6 +16,23 @@
       "message": "This compiles now.",
       "revId": "93bde0e789ef72ef4304c3365cb76e18baf4f412",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18bbc652_3177a1d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2021-12-09T21:28:22Z",
+      "side": 1,
+      "message": "Fixes the ims crash on unofficial xiaomi sm6150 and nubia sm8150 (tp1803), both using ims.apk from android 11 oem releases which reference getAutoReject",
+      "revId": "93bde0e789ef72ef4304c3365cb76e18baf4f412",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
