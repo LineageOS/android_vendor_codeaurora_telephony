@@ -35,6 +35,7 @@ package org.codeaurora.ims;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemProperties;
 
 /**
  * Parcelable object to handle Video Call DataUsage information
@@ -51,15 +52,43 @@ public class QtiVideoCallDataUsage implements Parcelable {
     private static final String[] TEXT =
             {"WwanDataUsage = "," WlanDataUsage = ", " CIWlanDataUsage = "};
 
+    // Motorola specific
+    public static final int DATA_USAGE_LTE_TX = 0;
+    public static final int DATA_USAGE_LTE_RX = 1;
+    public static final int DATA_USAGE_WLAN_TX = 2;
+    public static final int DATA_USAGE_WLAN_RX = 3;
+    private static final String[] TEXT_MOTO = {
+        "LteTxDataUsage = ", " LteRxDataUsage = ", " WlanTxDataUsage = ", " WlanRxDataUsage = "
+    };
+    private static final String MOTO_VT_PROP = "ro.qcom.ims.use_moto_vt_ext";
+    private final boolean mUseMotoExt;
+
     public QtiVideoCallDataUsage(long[] dUsage) {
         if (dUsage == null || dUsage.length == 0 ) {
             throw new RuntimeException();
         }
         mDataUsage = dUsage;
+        mUseMotoExt = SystemProperties.getBoolean(MOTO_VT_PROP, false);
     }
 
     public QtiVideoCallDataUsage(Parcel in) {
         readFromParcel(in);
+        mUseMotoExt = SystemProperties.getBoolean(MOTO_VT_PROP, false);
+    }
+
+    /*
+     * These methods return LTE_{TX/RX} Data Usage (Motorola specific)
+     */
+    public long getLteTxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_LTE_TX)
+                ? mDataUsage[DATA_USAGE_LTE_TX]
+                : DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getLteRxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_LTE_RX)
+                ? mDataUsage[DATA_USAGE_LTE_RX]
+                : DATA_USAGE_INVALID_VALUE;
     }
 
     /*
@@ -73,16 +102,42 @@ public class QtiVideoCallDataUsage implements Parcelable {
      * This method returns WWAN Data Usage
      */
     public long getWwanDataUsage() {
-        return mDataUsage.length > DATA_USAGE_WWAN ? mDataUsage[DATA_USAGE_WWAN] :
-                DATA_USAGE_INVALID_VALUE;
+        if (mUseMotoExt) {
+            return mDataUsage.length > DATA_USAGE_LTE_RX
+                    ? mDataUsage[DATA_USAGE_LTE_TX] + mDataUsage[DATA_USAGE_LTE_RX]
+                    : DATA_USAGE_INVALID_VALUE;
+        } else {
+            return mDataUsage.length > DATA_USAGE_WWAN
+                    ? mDataUsage[DATA_USAGE_WWAN]
+                    : DATA_USAGE_INVALID_VALUE;
+        }
     }
 
     /*
      * This method returns WLAN Data Usage
      */
     public long getWlanDataUsage() {
-        return mDataUsage.length > DATA_USAGE_WLAN ? mDataUsage[DATA_USAGE_WLAN] :
-                DATA_USAGE_INVALID_VALUE;
+        if (mUseMotoExt) {
+            return mDataUsage.length > DATA_USAGE_WLAN_RX
+                    ? mDataUsage[DATA_USAGE_WLAN_TX] + mDataUsage[DATA_USAGE_WLAN_RX]
+                    : DATA_USAGE_INVALID_VALUE;
+        } else {
+            return mDataUsage.length > DATA_USAGE_WLAN
+                    ? mDataUsage[DATA_USAGE_WLAN]
+                    : DATA_USAGE_INVALID_VALUE;
+        }
+    }
+
+    public long getWlanTxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_WLAN_TX)
+                ? mDataUsage[DATA_USAGE_WLAN_TX]
+                : DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getWlanRxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_WLAN_RX)
+                ? mDataUsage[DATA_USAGE_WLAN_RX]
+                : DATA_USAGE_INVALID_VALUE;
     }
 
     /*
@@ -124,8 +179,9 @@ public class QtiVideoCallDataUsage implements Parcelable {
     public String toString() {
         if(mDataUsage != null) {
             String msg = "";
+            String[] text = mUseMotoExt ? TEXT_MOTO : TEXT;
             for (int i = 0; i < mDataUsage.length; i++) {
-                  msg += TEXT[i] + mDataUsage[i];
+                msg += text[i] + mDataUsage[i];
             }
             return msg;
         }
