@@ -40,10 +40,12 @@ import android.os.Parcelable;
 public class QtiVideoCallDataUsage implements Parcelable {
 
     private long[] mDataUsage;
-    public static final int DATA_USAGE_LTE = 0;
-    public static final int DATA_USAGE_WLAN = 1;
     public static final int DATA_USAGE_INVALID_VALUE = -1;
-    private static final String[] TEXT = {"LteDataUsage = "," WlanDataUsage = "};
+    public static final int DATA_USAGE_LTE_TX = 0;
+    public static final int DATA_USAGE_LTE_RX = 1;
+    public static final int DATA_USAGE_WLAN_TX = 2;
+    public static final int DATA_USAGE_WLAN_RX = 3;
+    private static final String[] TEXT = {"LteTxDataUsage = ", " LteRxDataUsage = ", " WlanTxDataUsage = ", " WlanRxDataUsage = "};
 
     public QtiVideoCallDataUsage(long[] dUsage) {
         if (dUsage == null || dUsage.length == 0 ) {
@@ -60,7 +62,17 @@ public class QtiVideoCallDataUsage implements Parcelable {
      * This method returns LTE Data Usage
      */
     public long getLteDataUsage() {
-        return mDataUsage.length > DATA_USAGE_LTE ? mDataUsage[DATA_USAGE_LTE] :
+        return mDataUsage.length > DATA_USAGE_LTE_RX ? mDataUsage[DATA_USAGE_LTE_TX] + mDataUsage[DATA_USAGE_LTE_RX] :
+                DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getLteTxDataUsage() {
+        return mDataUsage.length > DATA_USAGE_LTE_TX ? mDataUsage[DATA_USAGE_LTE_TX] :
+                DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getLteRxDataUsage() {
+        return mDataUsage.length > DATA_USAGE_LTE_RX ? mDataUsage[DATA_USAGE_LTE_RX] :
                 DATA_USAGE_INVALID_VALUE;
     }
 
@@ -68,7 +80,17 @@ public class QtiVideoCallDataUsage implements Parcelable {
      * This method returns WLAN Data Usage
      */
     public long getWlanDataUsage() {
-        return mDataUsage.length > DATA_USAGE_WLAN ? mDataUsage[DATA_USAGE_WLAN] :
+        return mDataUsage.length > DATA_USAGE_WLAN_RX ? mDataUsage[DATA_USAGE_WLAN_TX] + mDataUsage[DATA_USAGE_WLAN_RX] :
+                DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getWlanTxDataUsage() {
+        return mDataUsage.length > DATA_USAGE_WLAN_TX ? mDataUsage[DATA_USAGE_WLAN_TX] :
+                DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getWlanRxDataUsage() {
+        return mDataUsage.length > DATA_USAGE_WLAN_RX ? mDataUsage[DATA_USAGE_WLAN_RX] :
                 DATA_USAGE_INVALID_VALUE;
     }
 
