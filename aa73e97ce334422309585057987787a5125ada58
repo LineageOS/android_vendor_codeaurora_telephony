@@ -16,6 +16,23 @@
       "message": "required by nio and potentially other moto devices",
       "revId": "aa73e97ce334422309585057987787a5125ada58",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95ad6569_54a1894e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2022-02-15T18:48:57Z",
+      "side": 1,
+      "message": "This seems fine to me.",
+      "revId": "aa73e97ce334422309585057987787a5125ada58",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
