@@ -226,7 +226,6 @@ public class ExtTelephonyManager {
         for (ServiceCallback cb : mServiceCbs) {
             cb.onDisconnected();
         }
-        mServiceCbs.clear();
     }
 
     /**
@@ -847,6 +846,21 @@ public class ExtTelephonyManager {
             e.printStackTrace();
         }
         return token;
+    }
+
+    public boolean isEpdgOverCellularDataSupported(int slot) throws RemoteException {
+        boolean support = false;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "service not connected!");
+            return support;
+        }
+        try {
+            support = mExtTelephonyService.isEpdgOverCellularDataSupported(slot);
+        } catch(RemoteException e) {
+            Log.e(LOG_TAG, "isEpdgOverCellularDataSupported, remote exception");
+            e.printStackTrace();
+        }
+        return support;
     }
 
     public Client registerCallback(String packageName, IExtPhoneCallback callback) {
