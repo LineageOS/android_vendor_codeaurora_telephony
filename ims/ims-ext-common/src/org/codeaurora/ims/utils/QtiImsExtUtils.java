@@ -861,4 +861,27 @@ public class QtiImsExtUtils {
         return isCarrierConfigEnabled(phoneId, context,
                 QtiCarrierConfigs.KEY_CARRIER_SEND_MEDIA_CONFIG_SUPPORTED);
     }
+
+    // Returns true if Carrier supports data channel
+    public static boolean isDataChannelSupported(int phoneId, Context context) {
+        return isCarrierConfigEnabled(phoneId, context,
+                QtiCarrierConfigs.KEY_CARRIER_DATA_CHANNEL_SUPPORTED);
+    }
+
+    // Stores user setting for data channel
+    public static void setDataChannelUserPreference(ContentResolver contentResolver,
+            int phoneId, boolean turnOn) {
+        final int value = turnOn ? QtiCallConstants.DATA_CHANNEL_ENABLED :
+                QtiCallConstants.DATA_CHANNEL_DISABLED;
+        android.provider.Settings.Global.putInt(contentResolver,
+                QtiCallConstants.DATA_CHANNEL + phoneId, value);
+    }
+
+    // retrieves the stored user setting from the database per phone id
+    public static int getDataChannelUserPreference(ContentResolver contentResolver,
+            int phoneId) {
+        return android.provider.Settings.Global.getInt(contentResolver,
+                QtiCallConstants.DATA_CHANNEL + phoneId,
+                QtiCallConstants.DATA_CHANNEL_DISABLED);
+    }
 }

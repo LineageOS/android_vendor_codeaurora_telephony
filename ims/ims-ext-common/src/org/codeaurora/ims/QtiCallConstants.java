@@ -362,6 +362,26 @@ public class QtiCallConstants {
     public static final int QTI_CONFIG_VOWIFI_ROAMING_MODE_PREFERENCE = 1003;
     public static final int CALL_COMPOSER_MODE = 1004;
     public static final int B2C_ENRICHED_CALLING_MODE = 1005;
+    public static final int DATA_CHANNEL_MODE = 1006;
+    /**
+     * An integer key representing the voice over LTE (VoLTE) provisioning restriction status for
+     * home network for the associated subscription.
+     * Use {@link #PROVISIONING_VALUE_ENABLED} to enable VoLTE provisioning restriction and
+     * {@link #PROVISIONING_VALUE_DISABLED} to disable VoLTE provisioning restriction.
+     * @see #setProvisioningIntValue(int, int)
+     * @see #getProvisioningIntValue(int)
+     */
+    public static final int VOLTE_PROVISIONING_RESTRICT_HOME = 1007;
+
+    /**
+     * An integer key representing the voice over LTE (VoLTE) provisioning restriction status for
+     * roaming network for the associated subscription.
+     * Use {@link #PROVISIONING_VALUE_ENABLED} to enable VoLTE provisioning restriction and
+     * {@link #PROVISIONING_VALUE_DISABLED} to disable VoLTE provisioning restriction.
+     * @see #setProvisioningIntValue(int, int)
+     * @see #getProvisioningIntValue(int)
+     */
+    public static final int VOLTE_PROVISIONING_RESTRICT_ROAMING = 1008;
 
     /**
      * Key values for the pre alerting call elements
@@ -455,6 +475,14 @@ public class QtiCallConstants {
     public static final int B2C_ENRICHED_CALLING_ENABLED = 1;
 
     /**
+     * User setting to control whether ims data channel is allowed
+     * Type: int (0 for disable, 1 for enabled);
+     */
+    public static final String DATA_CHANNEL = "qti.settings.data_channel";
+    public static final int DATA_CHANNEL_DISABLED = 0;
+    public static final int DATA_CHANNEL_ENABLED = 1;
+
+    /**
      * Constants used by clients as part of registration status change indication.
      * Below constants will be notified when modem is unable to get the geo location information.
      */
@@ -522,4 +550,7 @@ public class QtiCallConstants {
      *  - activate CFx before register operation
      *  - query CFNL while network does not support CFNL feature */
     public static final int CODE_UT_CF_SERVICE_NOT_REGISTERED = 850;
+    // Data Channel call information
+    public static final String EXTRA_DATA_CHANNEL_MODEM_CALL_ID = "modemCallId";
+    public static final String EXTRA_IS_DATA_CHANNEL_CALL = "isDcCall";
 }

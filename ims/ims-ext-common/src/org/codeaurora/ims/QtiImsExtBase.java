@@ -118,6 +118,12 @@ public abstract class QtiImsExtBase {
         }
 
         @Override
+        public void setDataChannelCapabilityListener(int phoneId,
+                IQtiImsExtListener listener) {
+           onSetDataChannelCapabilityListener(phoneId, listener);
+        }
+
+        @Override
         public int getRcsAppConfig(int phoneId) {
             return onGetRcsAppConfig(phoneId);
 
@@ -184,6 +190,11 @@ public abstract class QtiImsExtBase {
         @Override
         public boolean isExitScbmFeatureSupported(int phoneId) {
             return onIsExitScbmFeatureSupported(phoneId);
+        }
+
+        @Override
+        public boolean isDataChannelEnabled(int phoneId) {
+            return onIsDataChannelEnabled(phoneId);
         }
     };
 
@@ -295,6 +306,16 @@ public abstract class QtiImsExtBase {
     }
 
     protected boolean onIsExitScbmFeatureSupported(int phoneId) {
+        // no-op
+        return false;
+    }
+
+    protected void onSetDataChannelCapabilityListener(int phoneId,
+            IQtiImsExtListener listener) {
+        // no-op
+    }
+
+    protected boolean onIsDataChannelEnabled(int phoneId) {
         // no-op
         return false;
     }

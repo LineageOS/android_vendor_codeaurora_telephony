@@ -197,4 +197,10 @@ public class QtiCarrierConfigs {
      */
     public static final String KEY_IS_PRIVATE_NETWORK =
         "is_private_network";
+
+    /* Config to determine if Carrier supports ims data channel
+     * true - if data channel is support else false
+     */
+     public static final String KEY_CARRIER_DATA_CHANNEL_SUPPORTED =
+         "carrier_data_channel_supported_bool";
 }

@@ -197,4 +197,12 @@ oneway interface IQtiImsExtListener {
      */
    void onScbmExited(boolean status);
 
+   /** Notifies client on data channel capability
+     * @param phoneId indicates the phone instance which triggered the request
+     * @param dcCapability
+     *        if true  : has data channel capability
+     *        if false : no data channel capability
+     * @return void.
+     */
+   void notifyDataChannelCapability(int phoneId, boolean dcCapability);
 }

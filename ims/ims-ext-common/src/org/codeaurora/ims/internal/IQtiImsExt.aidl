@@ -341,4 +341,25 @@ interface IQtiImsExt {
       * @throws RemoteException if calling the IMS service results in an error.
       */
      boolean isExitScbmFeatureSupported(int phoneId);
+
+   /**
+     * setDataChannelCapabilityListener
+     * Set data channel capability listener.
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @param listener an IQtiImsExtListener instance to indicate the response
+     * @return void
+     */
+    oneway void setDataChannelCapabilityListener(int phoneId, IQtiImsExtListener listener);
+
+    /**
+     * isDataChannelEnabled
+     * Retrieves whether IMS service data channel is enabled/disabled
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean
+     *
+     *@throws RemoteException if calling the IMS service results in an error.
+     */
+    boolean isDataChannelEnabled(int phoneId);
 }

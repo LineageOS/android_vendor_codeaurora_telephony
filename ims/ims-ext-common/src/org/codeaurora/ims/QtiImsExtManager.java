@@ -423,4 +423,32 @@ public class QtiImsExtManager {
         }
     }
 
+    /**
+     * Used by client to register call back listener with vendor for
+     * UNSOL indication when data channel capability updated.
+     */
+    public void setDataChannelCapabilityListener(int phoneId, IQtiImsExtListener listener)
+            throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            mQtiImsExt.setDataChannelCapabilityListener(phoneId, listener);
+        } catch(RemoteException e) {
+            throw new QtiImsException("Remote ImsService setDataChannelCapabilityListener : "
+                    + e);
+        }
+    }
+    /**
+     * Used by clients to check if IMS service data channel is enabled/disabled
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean
+     */
+    public boolean isDataChannelEnabled(int phoneId)
+            throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.isDataChannelEnabled(phoneId);
+        } catch (RemoteException e) {
+            throw new QtiImsException("Remote ImsService isDataChannelEnabled: " + e);
+        }
+    }
 }
