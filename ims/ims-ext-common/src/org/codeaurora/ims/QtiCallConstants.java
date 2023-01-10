@@ -396,7 +396,7 @@ public class QtiCallConstants {
 
     // Set for MT pre alerting call (unique ID to match subscription)
     // Type: int
-    public static final String EXTRA_PRE_ALERTING_CALL_PHONE_ID = " pre_alerting_call_phoneId";
+    public static final String EXTRA_PRE_ALERTING_CALL_PHONE_ID = "pre_alerting_call_phoneId";
 
     // Set for MT pre alerting call (only set when the call has ended)
     // Type: boolean

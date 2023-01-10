@@ -5,4 +5,4 @@
 
 package com.qti.extphone;
 
-parcelable NrUwbIconMode;
+parcelable QtiSimType;
