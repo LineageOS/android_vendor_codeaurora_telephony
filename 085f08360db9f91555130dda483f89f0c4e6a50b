@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c34510c_efabc71e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16023
+      },
+      "writtenOn": "2023-10-24T21:38:59Z",
+      "side": 1,
+      "message": "Not sure if this is the right place for discussion about that but you can actually set upstream in manifest and parse manifest instead of adding this file everywhere.",
+      "revId": "085f08360db9f91555130dda483f89f0c4e6a50b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
