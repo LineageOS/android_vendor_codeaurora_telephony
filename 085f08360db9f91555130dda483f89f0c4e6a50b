@@ -34,6 +34,24 @@
       "parentUuid": "1c34510c_efabc71e",
       "revId": "085f08360db9f91555130dda483f89f0c4e6a50b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f324cf79_2a5ea1bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16023
+      },
+      "writtenOn": "2023-10-25T17:04:39Z",
+      "side": 1,
+      "message": "Well, we mis-used the upstream attribute for our merge script.\n\nSee:\nhttps://git.halogenos.org/halogenOS/android_manifest/-/blob/XOS-14.0/snippets/XOS.xml?ref_type\u003dheads#L141\n\nAnd the script:\nhttps://git.halogenos.org/halogenOS/android_external_xos/-/blob/XOS-14.0/xostools/scripts/merge_upstream.sh?ref_type\u003dheads\n\nThis has been working fine for us for years.",
+      "parentUuid": "383c2d27_1b37dba2",
+      "revId": "085f08360db9f91555130dda483f89f0c4e6a50b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
