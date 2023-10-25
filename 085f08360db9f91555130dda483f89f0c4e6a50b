@@ -16,6 +16,24 @@
       "message": "Not sure if this is the right place for discussion about that but you can actually set upstream in manifest and parse manifest instead of adding this file everywhere.",
       "revId": "085f08360db9f91555130dda483f89f0c4e6a50b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "383c2d27_1b37dba2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2195
+      },
+      "writtenOn": "2023-10-25T09:24:14Z",
+      "side": 1,
+      "message": "Got an example?\n\nPer https://gerrit.googlesource.com/git-repo/+/refs/heads/main/docs/manifest-format.md the \"upstream\" mentioned wouldn\u0027t exactly fit. This is used by scripts for merging.",
+      "parentUuid": "1c34510c_efabc71e",
+      "revId": "085f08360db9f91555130dda483f89f0c4e6a50b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
