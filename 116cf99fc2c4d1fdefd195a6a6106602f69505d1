@@ -68,6 +68,24 @@
       "parentUuid": "b1048916_d966febd",
       "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e772b6f_090c5c63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-01-04T23:36:15Z",
+      "side": 1,
+      "message": "There: https://review.lineageos.org/c/LineageOS/android_vendor_codeaurora_telephony/+/378909",
+      "parentUuid": "021468dc_b5504aa4",
+      "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
