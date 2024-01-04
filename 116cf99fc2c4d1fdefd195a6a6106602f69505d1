@@ -50,6 +50,24 @@
       "message": "I assume we\u0027ll have to add getLteDataUsage back for backwards compatibility with prebuilt apks?",
       "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "021468dc_b5504aa4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-01-04T22:16:12Z",
+      "side": 1,
+      "message": "Yes, I think so.",
+      "parentUuid": "b1048916_d966febd",
+      "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
