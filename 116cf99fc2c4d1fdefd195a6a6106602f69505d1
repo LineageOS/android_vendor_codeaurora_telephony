@@ -103,6 +103,23 @@
       "message": "the merge will definitely break moto. the current behavior should be restored in https://review.lineageos.org/c/LineageOS/android_vendor_codeaurora_telephony/+/378909",
       "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b24c3c0_d135c992",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2024-01-05T02:11:42Z",
+      "side": 1,
+      "message": "potentially, future moto releases might follow qcom to rename Lte{Tx,Rx}DataUsage to Wwan{Tx,Rx}DataUsage, and add CI{Tx,Rx}WlanDataUsage. we may need to address the issue at that time.",
+      "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
