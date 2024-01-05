@@ -86,6 +86,23 @@
       "parentUuid": "021468dc_b5504aa4",
       "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86b2139e_0d4b109e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2024-01-05T02:05:56Z",
+      "side": 1,
+      "message": "the merge will definitely break moto. the current behavior should be restored in https://review.lineageos.org/c/LineageOS/android_vendor_codeaurora_telephony/+/378909",
+      "revId": "116cf99fc2c4d1fdefd195a6a6106602f69505d1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
