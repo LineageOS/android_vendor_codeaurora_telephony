@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae982b38_0d309251",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2024-01-05T02:12:55Z",
+      "side": 1,
+      "message": "DATA_USAGE_LTE is public so ig you need to add that back as well",
+      "revId": "cc6b40ea2d3c90bfebbdfec92b5e94d0eb549e1a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
