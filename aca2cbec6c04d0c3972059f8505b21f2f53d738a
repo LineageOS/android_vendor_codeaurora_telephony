@@ -16,6 +16,23 @@
       "message": "I don\u0027t have 21 built yet to test, but this looks okay.",
       "revId": "aca2cbec6c04d0c3972059f8505b21f2f53d738a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a59dc3_476ac40e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-01-10T07:50:09Z",
+      "side": 1,
+      "message": "nothing seems to explode on pstar, which is one of the concerned cases",
+      "revId": "aca2cbec6c04d0c3972059f8505b21f2f53d738a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
