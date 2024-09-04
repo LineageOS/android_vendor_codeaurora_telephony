@@ -28,9 +28,8 @@
  */
 
 /*
- * Changes from Qualcomm Innovation Center are provided under the following license:
- *
- * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -502,4 +501,13 @@ interface IExtPhoneCallback {
      *               count
      */
     void onNrIconResponse(int slotId, in Token token, in Status status, in NrIcon icon);
+
+     /**
+     * Response to setDataPriorityPreference
+     *
+     * @param - token is the same token which is received in setDataPriorityPreference
+     * @param - status SUCCESS/FAILURE based on RIL NAS module response
+     */
+    void setDataPriorityPreferenceResponse(in Token token, in Status status);
+
 }

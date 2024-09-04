@@ -28,9 +28,8 @@
  */
 
 /*
- * Changes from Qualcomm Innovation Center are provided under the following license:
- *
- * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -41,6 +40,7 @@ import android.telephony.ImsiEncryptionInfo;
 import com.qti.extphone.CellularRoamingPreference;
 import com.qti.extphone.CiwlanConfig;
 import com.qti.extphone.Client;
+import com.qti.extphone.DataPriorityPreference;
 import com.qti.extphone.IDepersoResCallback;
 import com.qti.extphone.IExtPhoneCallback;
 import com.qti.extphone.MsimPreference;
@@ -728,4 +728,16 @@ interface IExtPhone {
      * @return - Integer token to compare with the response
      */
     Token queryNrIcon(int slotId, in Client client);
+
+    /**
+     * Sets the data prioritization preference.
+     *
+     * Sets user/application preference to maximize
+     * the aggregated data throughput (SUB1 and SUB2 together).
+     *
+     * @param client - Client registered with package name to receive callbacks.
+     * @param pref - DataPriorityPreference contains aggregated throughput for both SUBs or not.
+     * @return - Integer Token can be used to compare with the response.
+     */
+    Token setDataPriorityPreference(in Client client, in DataPriorityPreference pref);
 }

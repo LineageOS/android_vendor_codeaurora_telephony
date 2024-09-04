@@ -28,8 +28,8 @@
  */
 
 /*
- * Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -48,6 +48,7 @@ import android.telephony.ImsiEncryptionInfo;
 import android.telephony.NetworkScanRequest;
 import android.util.Log;
 
+import com.qti.extphone.DataPriorityPreference;
 import com.qti.extphone.MsimPreference;
 
 import java.lang.Integer;
@@ -82,6 +83,7 @@ public class ExtTelephonyManager {
     public static final int FEATURE_TDSCDMA_SUPPORT                        = FEATURE_BASE + 8;
     public static final int FEATURE_NITZ_ENHANCEMENT                       = FEATURE_BASE + 9;
     public static final int FEATURE_NR_6RX_ICON                            = FEATURE_BASE + 10;
+    public static final int FEATURE_TURBO_DSDA                             = FEATURE_BASE + 11;
 
     private static ExtTelephonyManager mInstance;
 
@@ -124,6 +126,16 @@ public class ExtTelephonyManager {
 
     /** SNPN access mode */
     public static final int ACCESS_MODE_SNPN = 2;
+
+    /* DATA++DATA feature's global system settings name */
+    public static final String DUAL_DATA_PREFERENCE = "dual_data_preference";
+
+    /* Default dual data preference setting*/
+    public static final int DEFAULT_DUAL_DATA_PREFERENCE = 0;
+
+    /* Data throughput priority subscription feature's global system settings name  */
+    public static final String DATA_THROUGHPUT_PRIORITY_SUB_PREFERENCE =
+            "data_throughput_priority_sub";
 
     /**
     * Constructor
@@ -1059,6 +1071,26 @@ public class ExtTelephonyManager {
             token = mExtTelephonyService.setMsimPreference(client, pref);
         } catch (RemoteException e) {
             Log.e(LOG_TAG, "setMsimPreference ended in remote exception", e);
+        }
+        return token;
+    }
+
+    public Token setDataPriorityPreference(Client client, DataPriorityPreference dataPreference)
+            throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "service not connected!");
+            return token;
+        }
+        if (client == null || dataPreference == null) {
+            Log.e(LOG_TAG, "setDataPriorityPreference: invalid parameters");
+            return token;
+        }
+
+        try {
+            token = mExtTelephonyService.setDataPriorityPreference(client, dataPreference);
+        } catch (RemoteException e) {
+            Log.e(LOG_TAG, "setDataPriorityPreference ended in remote exception", e);
         }
         return token;
     }
