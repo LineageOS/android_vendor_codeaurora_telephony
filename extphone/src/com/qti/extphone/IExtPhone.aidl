@@ -50,6 +50,7 @@ import com.qti.extphone.QtiPersoUnlockStatus;
 import com.qti.extphone.QtiSetNetworkSelectionMode;
 import com.qti.extphone.QtiSimType;
 import com.qti.extphone.Token;
+import com.qti.extphone.TurboDsdaPreference;
 
 interface IExtPhone {
 
@@ -740,4 +741,17 @@ interface IExtPhone {
      * @return - Integer Token can be used to compare with the response.
      */
     Token setDataPriorityPreference(in Client client, in DataPriorityPreference pref);
+
+    /**
+     * Sets the Turbo DSDA mode preference.
+     *
+     * In Turbo DSDA mode, modem can aggregate up to four downlink carriers simultaneously
+     * to improve data throughput. If Turbo DSDA mode is disabled, modem aggregates up to three
+     * downlink carriers simultaneously.
+     *
+     * @param client - Client registered with package name to receive callbacks.
+     * @param pref - TurboDsdaPreference user preference to enable or disable turbo mode.
+     * @return - Integer Token can be used to compare with the response.
+     */
+    Token setTurboDsdaPreference(in Client client, in TurboDsdaPreference pref);
 }

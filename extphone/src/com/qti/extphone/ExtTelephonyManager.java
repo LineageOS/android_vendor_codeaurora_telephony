@@ -50,6 +50,7 @@ import android.util.Log;
 
 import com.qti.extphone.DataPriorityPreference;
 import com.qti.extphone.MsimPreference;
+import com.qti.extphone.TurboDsdaPreference;
 
 import java.lang.Integer;
 import java.util.ArrayList;
@@ -136,6 +137,9 @@ public class ExtTelephonyManager {
     /* Data throughput priority subscription feature's global system settings name  */
     public static final String DATA_THROUGHPUT_PRIORITY_SUB_PREFERENCE =
             "data_throughput_priority_sub";
+
+    /* Turbo DSDA feature's global system settings name  */
+    public static final String TURBO_DSDA_PREFERENCE = "turbo_dsda";
 
     /**
     * Constructor
@@ -1091,6 +1095,26 @@ public class ExtTelephonyManager {
             token = mExtTelephonyService.setDataPriorityPreference(client, dataPreference);
         } catch (RemoteException e) {
             Log.e(LOG_TAG, "setDataPriorityPreference ended in remote exception", e);
+        }
+        return token;
+    }
+
+    public Token setTurboDsdaPreference(Client client, TurboDsdaPreference dsdaPreference)
+            throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "service not connected!");
+            return token;
+        }
+        if (client == null || dsdaPreference == null) {
+            Log.e(LOG_TAG, "setTurboDsdaPreference: invalid parameters");
+            return token;
+        }
+
+        try {
+            token = mExtTelephonyService.setTurboDsdaPreference(client, dsdaPreference);
+        } catch (RemoteException e) {
+            Log.e(LOG_TAG, "setTurboDsdaPreference ended in remote exception", e);
         }
         return token;
     }

@@ -510,4 +510,11 @@ interface IExtPhoneCallback {
      */
     void setDataPriorityPreferenceResponse(in Token token, in Status status);
 
+     /**
+     * Response to setTurboDsdaPreference
+     *
+     * @param - token is the same token which is received in setTurboDsdaPreference
+     * @param - status SUCCESS/FAILURE based on RIL NAS module response
+     */
+    void setTurboDsdaPreferenceResponse(in Token token, in Status status);
 }

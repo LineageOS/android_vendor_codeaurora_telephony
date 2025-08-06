@@ -344,4 +344,9 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     public void setDataPriorityPreferenceResponse(Token token, Status status)
             throws RemoteException {
     }
+
+    @Override
+    public void setTurboDsdaPreferenceResponse(Token token, Status status)
+            throws RemoteException {
+    }
 }
