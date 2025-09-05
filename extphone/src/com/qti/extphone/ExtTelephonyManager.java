@@ -186,6 +186,12 @@ public class ExtTelephonyManager {
             Log.e(LOG_TAG, "service not connected!");
             return ret;
         }
+
+        if (feature == FEATURE_TDSCDMA_SUPPORT) {
+            log("TDSCDMA feature is not supported");
+            return ret;
+        }
+
         try {
             ret = mExtTelephonyService.isFeatureSupported(feature);
         } catch (RemoteException e){
@@ -641,18 +647,10 @@ public class ExtTelephonyManager {
         return token;
     }
 
+    @Deprecated
     public Token sendCdmaSms(int slot, byte[] pdu, boolean expectMore, Client client) {
-        Token token = null;
-        if (!isServiceConnected()) {
-            Log.e(LOG_TAG, "service not connected!");
-            return token;
-        }
-        try {
-            token = mExtTelephonyService.sendCdmaSms(slot, pdu, expectMore, client);
-        } catch (RemoteException e) {
-            Log.e(LOG_TAG, "sendCdmaSms, remote exception", e);
-        }
-        return token;
+        Log.e(LOG_TAG, "sendCdmaSms API is not supported");
+        return null;
     }
 
     public Token startNetworkScan(int slot, NetworkScanRequest networkScanRequest, Client client) {

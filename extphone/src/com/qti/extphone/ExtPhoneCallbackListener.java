@@ -66,7 +66,7 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_ON_SIM_TYPE_CHANGED = 26;
     public static final int EVENT_ON_UPPER_LAYER_IND_INFO = 27;
     public static final int EVENT_QUERY_CALL_FORWARD_STATUS_RESPONSE = 28;
-    public static final int EVENT_SEND_CDMA_SMS_RESPONSE = 29;
+    // public static final int EVENT_SEND_CDMA_SMS_RESPONSE = 29;
     public static final int EVENT_SET_CARRIER_INFO_FOR_IMSI_ENCRYPTION_RESPONSE = 30;
     public static final int EVENT_SET_MSIM_PREFERENCE_RESPONSE = 31;
     public static final int EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_RESPONSE = 32;
@@ -512,16 +512,6 @@ public class ExtPhoneCallbackListener {
                     } catch (RemoteException e) {
                         Log.e(TAG, "EVENT_QUERY_CALL_FORWARD_STATUS_RESPONSE : Exception = " +
                                 e);
-                    }
-                    break;
-                case EVENT_SEND_CDMA_SMS_RESPONSE:
-                    try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
-                        extPhoneCallbackListener.sendCdmaSmsResponse(result.mSlotId,
-                                result.mToken, result.mStatus, (SmsResult) result.mData);
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "EVENT_SEND_CDMA_SMS_RESPONSE : Exception = " + e);
                     }
                     break;
                 case EVENT_SET_CARRIER_INFO_FOR_IMSI_ENCRYPTION_RESPONSE:
@@ -1093,12 +1083,6 @@ public class ExtPhoneCallbackListener {
         public void onNrConfigStatus(int slotId, Token token, Status status, NrConfig nrConfig)
                 throws RemoteException {
             send(EVENT_ON_NR_CONFIG_STATUS, 0, 0, new Result(slotId, token, status, 0, nrConfig));
-        }
-
-        @Override
-        public void sendCdmaSmsResponse(int slotId, Token token, Status status, SmsResult sms)
-                throws RemoteException {
-            send(EVENT_SEND_CDMA_SMS_RESPONSE, 0, 0, new Result(slotId, token, status, 0, sms));
         }
 
         @Override
