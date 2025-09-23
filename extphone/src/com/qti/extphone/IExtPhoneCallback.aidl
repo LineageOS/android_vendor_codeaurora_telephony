@@ -517,4 +517,13 @@ interface IExtPhoneCallback {
      * @param - status SUCCESS/FAILURE based on RIL NAS module response
      */
     void setTurboDsdaPreferenceResponse(in Token token, in Status status);
+
+    /**
+     * Indication to start/stop QCARE logging.
+     *
+     * @param qcareLoggingStatus The status of QCARE logging.
+     *                           0 = Stop logging
+     *                           1 = Start logging
+     */
+    void onQcareLoggingStatusChange(int qcareLoggingStatus);
 }
