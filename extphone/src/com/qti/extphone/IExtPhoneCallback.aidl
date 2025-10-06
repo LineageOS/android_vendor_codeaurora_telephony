@@ -226,7 +226,7 @@ interface IExtPhoneCallback {
     void onDdsSwitchRecommendation(int slotId, int recommendedSlotId);
 
     /**
-     * Indiactes the delay time to deactivate default data pdn when cellular IWLAN feature is ON.
+     * Indicates the delay time to deactivate default data pdn when cellular IWLAN feature is ON.
      * @param - delayTimeMilliSecs delayTimeMilliSecs>0 indicates one or more pdns
      *           are present on cellular IWLAN RAT and wait for delayTimeMilliSecs
      *           to deactivate default data pdn if required.
@@ -399,8 +399,8 @@ interface IExtPhoneCallback {
     /**
      * Indicates that modem capability of Smart Temp DDS Switch has changed.
      *
-     * Upon receiving this indication, HLOS must inform the modem the user’s preference
-     * for enabling temp DDS switch.
+     * Upon receiving this indication, HLOS must inform the modem the user's
+     * preference for enabling temp DDS switch.
      *
      * @param token to match request/response.
      * @param status SUCCESS/FAILURE based on the modem result code
@@ -413,9 +413,10 @@ interface IExtPhoneCallback {
      * Indicates that Temp DDS Switch criteria has changed.
      *
      * The boolean contained in this indication determines whether the modem-initiated
-     * Smart Temp DDS Switch is to be used, or the telephony-initiated legacy Temp DDS
-     * Switch logic is to be used. If telephony temp DDS switch logic is disabled, then
-     * telephony must wait for modem recommendations to perform the Temp DDS switch.
+     * Smart Temp DDS Switch is to be used, or the telephony-initiated legacy Temp
+     * DDS Switch logic is to be used. If telephony temp DDS switch logic is disabled,
+     * then telephony must wait for modem recommendations to perform the Temp DDS
+     * switch.
      *
      * @param telephonyDdsSwitch true/false based on whether telephony temp DDS switch
      *        logic should be enabled or disabled
@@ -423,7 +424,8 @@ interface IExtPhoneCallback {
     void onDdsSwitchConfigCriteriaChanged(boolean telephonyDdsSwitch);
 
     /**
-     * Indicates the modem's recommendation for the slot on which Temp DDS Switch has to be made.
+     * Indicates the modem's recommendation for the slot on which Temp DDS Switch
+     * has to be made.
      *
      * @param recommendedSlotId slot ID to which DDS must be switched
      */
@@ -441,8 +443,8 @@ interface IExtPhoneCallback {
      * Response to setCellularRoamingPreference
      *
      * @param slotId - slot ID to which this response belongs
-     * @param token - To match request/response. Response must include the same token as in the
-     *        request. Otherwise, the token is set to -1.
+     * @param token - To match request/response. Response must include the same token as
+     *        in the request. Otherwise, the token is set to -1.
      * @param status - SUCCESS/FAILURE based on the modem result code
      */
     void setCellularRoamingPreferenceResponse(int slotId, in Token token, in Status status);
@@ -452,7 +454,7 @@ interface IExtPhoneCallback {
      *
      * @param slotId - Slot Id
      * @param ciwlanAvailable - ciwlanAvailable true indicates C_IWLAN RAT is available,
-     *                          false otherwise.
+     *        false otherwise.
      */
     void onCiwlanAvailable(int slotId, in boolean ciwlanAvailable);
 
@@ -460,14 +462,16 @@ interface IExtPhoneCallback {
      * Indication to know the C_IWLAN mode(only vs preferred) for home and roaming
      *
      * @param slotId - Slot Id
-     * @param ciwlanConfig - C_IWLAN configuration (only vs preferred) for home and roaming
+     * @param ciwlanConfig - C_IWLAN configuration (only vs preferred) for home
+     *        and roaming
      */
     void onCiwlanConfigChange(int slotId, in CiwlanConfig ciwlanConfig);
 
     /**
     * Response to setCiwlanModeUserPreference
     * @param slotId - Slot Id
-    * @param token - token is the same token which is recived in setCiwlanModeUserPreference
+    * @param token - token is the same token which is recived in
+    *        setCiwlanModeUserPreference
     * @param status - SUCCESS/FAILURE based on the modem Result code
     */
     void setCiwlanModeUserPreferenceResponse(int slotId, in Token token, in Status status);
@@ -476,8 +480,8 @@ interface IExtPhoneCallback {
      * Unsol msg to indicate changes to the NR icon
      *
      * @param slotId - Slot ID for which this indication is sent
-     * @param icon - NR icon type as per NrIconType.aidl and additional information such as the Rx
-     *               count
+     * @param icon - NR icon type as per NrIconType.aidl and additional information
+     *        such as the Rx count
      */
     void onNrIconChange(int slotId, in NrIcon icon);
 
@@ -487,8 +491,8 @@ interface IExtPhoneCallback {
      * @param slotId - Slot ID for which this response is sent
      * @param token - This is the same token which is sent from queryNrIcon
      * @param status - SUCCESS/FAILURE based on the modem result code
-     * @param icon - NR icon type as per NrIconType.aidl and additional information such as the Rx
-     *               count
+     * @param icon - NR icon type as per NrIconType.aidl and additional information
+     *        such as the Rx count
      */
     void onNrIconResponse(int slotId, in Token token, in Status status, in NrIcon icon);
 
@@ -516,4 +520,14 @@ interface IExtPhoneCallback {
      *                           1 = Start logging
      */
     void onQcareLoggingStatusChange(int qcareLoggingStatus);
+
+    /** 
+     * Indication received when traffic protection status changes for a slot
+     * Based on QMI_DSD_TRAFFIC_PROT_STATUS_IND
+     *
+     * @param slotId - Slot ID for which traffic protection status changed
+     * @param isBlocked - true if traffic protection is blocked (gaming active),
+     *        false if unblocked
+     */
+    void onTrafficProtectionStatusChanged(int slotId, boolean isBlocked);
 }
