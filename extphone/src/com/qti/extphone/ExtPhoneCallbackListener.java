@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -90,6 +90,8 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_ON_CIWLAN_CONFIG_CHANGE = 50;
     public static final int EVENT_ON_NR_ICON_CHANGE = 51;
     public static final int EVENT_QUERY_NR_ICON_RESPONSE = 52;
+    public static final int EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE = 53;
+    public static final int EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE = 54;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -712,6 +714,28 @@ public class ExtPhoneCallbackListener {
                         Log.e(TAG, "EVENT_QUERY_NR_ICON_RESPONSE : Exception = " + e);
                     }
                     break;
+                case EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.setDataPriorityPreferenceResponse(
+                                result.mToken, result.mStatus);
+                    } catch (RemoteException e) {
+                        Log.e(TAG,"EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE : Exception = "
+                               + e);
+                    }
+                    break;
+                case EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.setTurboDsdaPreferenceResponse(
+                                result.mToken, result.mStatus);
+                    } catch (RemoteException e) {
+                        Log.e(TAG,"EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE : Exception = "
+                               + e);
+                    }
+                    break;
                 default :
                     Log.d(TAG, "default : " + msg.what);
             }
@@ -1010,6 +1034,18 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onNrIconResponse: slotId = " + slotId + ", token = " + token
                 + ", status = " + status + ", icon = " + icon);
+    }
+
+    public void setDataPriorityPreferenceResponse(Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: setDataPriorityPreferenceResponse: token = " + token +
+                " status = " + status);
+    }
+
+    public void setTurboDsdaPreferenceResponse(Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: setTurboDsdaPreferenceResponse: token = " + token +
+                " status = " + status);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1362,6 +1398,20 @@ public class ExtPhoneCallbackListener {
         public void onNrIconResponse(int slotId, Token token, Status status, NrIcon icon)
                 throws RemoteException {
             send(EVENT_QUERY_NR_ICON_RESPONSE, 0, 0, new Result(slotId, token, status, -1, icon));
+        }
+
+        @Override
+        public void setDataPriorityPreferenceResponse(Token token, Status status)
+                throws RemoteException {
+            send(EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE, 0, 0,
+                    new Result(0, token, status, 0, null));
+        }
+
+        @Override
+        public void setTurboDsdaPreferenceResponse(Token token, Status status)
+                throws RemoteException {
+            send(EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE, 0, 0,
+                    new Result(0, token, status, 0, null));
         }
 
         class Result {

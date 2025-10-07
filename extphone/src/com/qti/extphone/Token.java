@@ -82,6 +82,19 @@ public class Token implements Parcelable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return mValue == token.mValue;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mValue);
+    }
+
+    @Override
     public String toString() {
         return TAG + ": " + get();
     }
