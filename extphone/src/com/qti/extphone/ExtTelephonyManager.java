@@ -89,6 +89,7 @@ public class ExtTelephonyManager {
     public static final int FEATURE_TURBO_DSDA                             = FEATURE_BASE + 11;
     public static final int FEATURE_MMS_PDN_IMMEDIATE_RETRY_WITH_TRAFFIC_PROTECTION =
             FEATURE_BASE + 12;
+    public static final int FEATURE_RADIO_ICON                             = FEATURE_BASE + 13;
 
     private static ExtTelephonyManager mInstance;
 
@@ -1551,6 +1552,38 @@ public class ExtTelephonyManager {
             Log.e(LOG_TAG, "isMmsUnrestrictedByTrafficProtection, remote exception", e);
             return false;
         }
+    }
+
+    /**
+     * Get the radio icon information to be shown on the UI.
+     *
+     * This API gets the current radio icon status including:
+     * - 5G icon types (BASIC, UWB, PLUS_PLUS)
+     * - NB-IoT icon status
+     * - Rx antenna configuration (e.g., 6RX)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param client - Client registered with package name to receive callbacks
+     * @return - Integer token to compare with the response
+     */
+    public Token queryRadioIcon(int slotId, Client client) {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "queryRadioIcon: service not connected!");
+            return token;
+        }
+
+        if (!isFeatureSupported(FEATURE_RADIO_ICON)) {
+            Log.e(LOG_TAG, "queryRadioIcon: feature not supported!");
+            return token;
+        }
+
+        try {
+            token = mExtTelephonyService.queryRadioIcon(slotId, client);
+        } catch (RemoteException ex) {
+            Log.e(LOG_TAG, "queryRadioIcon failed.", ex);
+        }
+        return token;
     }
 
     private void log(String str) {

@@ -50,6 +50,7 @@ import com.qti.extphone.QosParametersResult;
 import com.qti.extphone.QtiCallForwardInfo;
 import com.qti.extphone.QtiImeiInfo;
 import com.qti.extphone.QtiPersoUnlockStatus;
+import com.qti.extphone.RadioIcon;
 import com.qti.extphone.SignalStrength;
 import com.qti.extphone.QtiSimType;
 import com.qti.extphone.SmsResult;
@@ -521,7 +522,7 @@ interface IExtPhoneCallback {
      */
     void onQcareLoggingStatusChange(int qcareLoggingStatus);
 
-    /** 
+    /**
      * Indication received when traffic protection status changes for a slot
      * Based on QMI_DSD_TRAFFIC_PROT_STATUS_IND
      *
@@ -530,4 +531,22 @@ interface IExtPhoneCallback {
      *        false if unblocked
      */
     void onTrafficProtectionStatusChanged(int slotId, boolean isBlocked);
+
+    /**
+     * Response to queryRadioIcon
+     *
+     * @param slotId - Slot ID for which this response is sent
+     * @param token - This is the same token which is sent from queryRadioIcon
+     * @param status - SUCCESS/FAILURE based on the modem result code
+     * @param icon - Radio icon information including icon type and Rx count
+     */
+    void onRadioIconResponse(int slotId, in Token token, in Status status, in RadioIcon icon);
+
+    /**
+     * Unsol msg to indicate changes to the radio icon (5G, NB-IoT, etc.)
+     *
+     * @param slotId - Slot ID for which this indication is sent
+     * @param icon - Radio icon information including icon type and Rx count
+     */
+    void onRadioIconChange(int slotId, in RadioIcon icon);
 }

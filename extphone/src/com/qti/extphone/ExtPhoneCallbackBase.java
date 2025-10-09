@@ -348,4 +348,17 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     public void onTrafficProtectionStatusChanged(int slotId, boolean protectionStatus)
             throws RemoteException {
     }
+
+    @Override
+    public void onRadioIconResponse(int slotId, Token token, Status status, RadioIcon radioIcon)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconResponse: slotId = " + slotId + " token = " + token
+                + " status = " + status + " radioIcon = " + radioIcon);
+    }
+
+    @Override
+    public void onRadioIconChange(int slotId, RadioIcon radioIcon) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconChange: slotId = " + slotId
+                + " radioIcon = " + radioIcon);
+    }
 }

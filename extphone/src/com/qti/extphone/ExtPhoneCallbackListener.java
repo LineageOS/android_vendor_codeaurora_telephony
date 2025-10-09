@@ -94,6 +94,8 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE = 54;
     public static final int EVENT_ON_QCARE_LOGGING_STATUS_CHANGED = 55;
     public static final int EVENT_ON_TRAFFIC_PROTECTION_STATUS_CHANGED = 56;
+    public static final int EVENT_GET_RADIO_ICON_RESPONSE = 57;
+    public static final int EVENT_ON_RADIO_ICON_CHANGE = 58;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -750,6 +752,7 @@ public class ExtPhoneCallbackListener {
                                 "EVENT_ON_TRAFFIC_PROTECTION_STATUS_CHANGED : Exception = " + e);
                     }
                     break;
+
                 case EVENT_ON_QCARE_LOGGING_STATUS_CHANGED:
                     try {
                         IExtPhoneCallbackStub.Result result =
@@ -761,6 +764,30 @@ public class ExtPhoneCallbackListener {
                                 + " Exception = " + e);
                     }
                     break;
+
+                case EVENT_GET_RADIO_ICON_RESPONSE:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.onRadioIconResponse(result.mSlotId,
+                                result.mToken, result.mStatus,
+                                (com.qti.extphone.RadioIcon) result.mData);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_GET_RADIO_ICON_RESPONSE : Exception = " + e);
+                    }
+                    break;
+
+                case EVENT_ON_RADIO_ICON_CHANGE:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.onRadioIconChange(result.mSlotId,
+                                (com.qti.extphone.RadioIcon) result.mData);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_ON_RADIO_ICON_CHANGE : Exception = " + e);
+                    }
+                    break;
+
                 default :
                     Log.d(TAG, "default : " + msg.what);
             }
@@ -1083,6 +1110,17 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onTrafficProtectionStatusChanged: slotId = " + slotId
                 + " protectionStatus = " + protectionStatus);
+    }
+
+    public void onRadioIconResponse(int slotId, Token token, Status status,
+            com.qti.extphone.RadioIcon icon) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconResponse: slotId = " + slotId + ", token = " + token
+                + ", status = " + status + ", icon = " + icon);
+    }
+
+    public void onRadioIconChange(int slotId, com.qti.extphone.RadioIcon icon)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconChange: slotId = " + slotId + ", icon = " + icon);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1457,6 +1495,20 @@ public class ExtPhoneCallbackListener {
                 throws RemoteException {
             send(EVENT_ON_TRAFFIC_PROTECTION_STATUS_CHANGED, 0, 0,
                     new Result(slotId, null, null, -1, protectionStatus));
+        }
+
+        @Override
+        public void onRadioIconResponse(int slotId, Token token, Status status,
+                com.qti.extphone.RadioIcon icon) throws RemoteException {
+            send(EVENT_GET_RADIO_ICON_RESPONSE, 0, 0,
+                    new Result(slotId, token, status, -1, icon));
+        }
+
+        @Override
+        public void onRadioIconChange(int slotId, com.qti.extphone.RadioIcon icon)
+                throws RemoteException {
+            send(EVENT_ON_RADIO_ICON_CHANGE, 0, 0,
+                    new Result(slotId, null, null, -1, icon));
         }
 
         class Result {

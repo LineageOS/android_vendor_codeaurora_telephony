@@ -772,4 +772,19 @@ interface IExtPhone {
      * @return - boolean TRUE if MMS is unrestricted, FALSE otherwise
      */
     boolean isMmsUnrestrictedByTrafficProtection(int slotId);
+
+    /**
+     * Get the radio icon information to be shown on the UI.
+     *
+     * This API gets the current radio icon status including:
+     * - 5G icon types (BASIC, UWB, PLUS_PLUS)
+     * - NB-IoT icon status
+     * - Rx antenna configuration (e.g., 6RX)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param client - Client registered with package name to receive callbacks
+     * @return - Integer token to compare with the response
+     * Requires permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
+     */
+    Token queryRadioIcon(int slotId, in Client client);
 }
