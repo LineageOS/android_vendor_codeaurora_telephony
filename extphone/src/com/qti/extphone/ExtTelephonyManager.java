@@ -90,6 +90,7 @@ public class ExtTelephonyManager {
     public static final int FEATURE_MMS_PDN_IMMEDIATE_RETRY_WITH_TRAFFIC_PROTECTION =
             FEATURE_BASE + 12;
     public static final int FEATURE_RADIO_ICON                             = FEATURE_BASE + 13;
+    public static final int FEATURE_NR_5G_NTN                              = FEATURE_BASE + 14;
 
     private static ExtTelephonyManager mInstance;
 
@@ -145,6 +146,9 @@ public class ExtTelephonyManager {
 
     /* Turbo DSDA feature's global system settings name  */
     public static final String TURBO_DSDA_PREFERENCE = "turbo_dsda";
+
+    /* NR5G NTN mode's global system settings name  */
+    public static final String NR5G_NTN_MODE_PREFERENCE = "nr5g_ntn_mode";
 
     /**
     * Constructor
@@ -1583,6 +1587,46 @@ public class ExtTelephonyManager {
         } catch (RemoteException ex) {
             Log.e(LOG_TAG, "queryRadioIcon failed.", ex);
         }
+        return token;
+    }
+
+    /**
+     * Set NR 5G NTN (Non-Terrestrial Network) preference.
+     *
+     * This API allows setting the NR 5G NTN mode to:
+     * - DISABLE: Disable NR5G NTN
+     * - ENABLE: Enable NR5G NTN along with other existing RATs
+     * - TEST: Enable NR5G NTN only mode (test mode)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param mode - Nr5gNtnMode preference to be set
+     * @param client - Client registered with package name to receive callbacks
+     * @return - Integer token to compare with the response
+     */
+    public Token setNr5gNtnPreference(int slotId, Nr5gNtnMode mode, Client client)
+            throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "setNr5gNtnPreference: service not connected!");
+            return token;
+        }
+
+        if (!isFeatureSupported(FEATURE_NR_5G_NTN)) {
+            Log.e(LOG_TAG, "setNr5gNtnPreference: feature not supported!");
+            return token;
+        }
+
+        if (mode == null) {
+            Log.e(LOG_TAG, "setNr5gNtnPreference: mode is null!");
+            throw new IllegalArgumentException("Nr5gNtnMode cannot be null");
+        }
+
+        try {
+            token = mExtTelephonyService.setNr5gNtnPreference(slotId, mode, client);
+        } catch (RemoteException ex) {
+            Log.e(LOG_TAG, "setNr5gNtnPreference failed.", ex);
+        }
+
         return token;
     }
 

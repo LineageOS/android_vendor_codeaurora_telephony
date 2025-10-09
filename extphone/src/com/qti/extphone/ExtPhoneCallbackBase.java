@@ -66,6 +66,13 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
+    public void setNr5gNtnPreferenceResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: setNr5gNtnPreferenceResponse: slotId = " + slotId +
+                " token = " + token + " status = " + status);
+    }
+
+    @Override
     public void onEnableEndc(int slotId, Token token, Status status) throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onEnableEndc: slotId = " + slotId + " token = " + token +
                 " status = " + status);

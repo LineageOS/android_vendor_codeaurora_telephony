@@ -41,6 +41,7 @@ import com.qti.extphone.BearerAllocationStatus;
 import com.qti.extphone.DcParam;
 import com.qti.extphone.DualDataRecommendation;
 import com.qti.extphone.NetworkSelectionMode;
+import com.qti.extphone.Nr5gNtnMode;
 import com.qti.extphone.NrConfig;
 import com.qti.extphone.NrConfigType;
 import com.qti.extphone.NrIcon;
@@ -549,4 +550,13 @@ interface IExtPhoneCallback {
      * @param icon - Radio icon information including icon type and Rx count
      */
     void onRadioIconChange(int slotId, in RadioIcon icon);
+
+    /**
+     * Response to setNr5gNtnPreference
+     *
+     * @param slotId - Slot ID for which this response is sent
+     * @param token - This is the same token which is sent from setNr5gNtnPreference
+     * @param status - SUCCESS/FAILURE based on the modem result code
+     */
+    void setNr5gNtnPreferenceResponse(int slotId, in Token token, in Status status);
 }

@@ -44,6 +44,7 @@ import com.qti.extphone.DataPriorityPreference;
 import com.qti.extphone.IDepersoResCallback;
 import com.qti.extphone.IExtPhoneCallback;
 import com.qti.extphone.MsimPreference;
+import com.qti.extphone.Nr5gNtnMode;
 import com.qti.extphone.NrConfig;
 import com.qti.extphone.QtiImeiInfo;
 import com.qti.extphone.QtiPersoUnlockStatus;
@@ -787,4 +788,20 @@ interface IExtPhone {
      * Requires permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
      */
     Token queryRadioIcon(int slotId, in Client client);
+
+    /**
+     * Set NR 5G NTN (Non-Terrestrial Network) preference.
+     *
+     * This API allows setting the NR 5G NTN mode to:
+     * - DISABLE: Disable NR5G NTN
+     * - ENABLE: Enable NR5G NTN along with other existing RATs
+     * - TEST: Enable NR5G NTN only mode (test mode)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param mode - Nr5gNtnMode preference to be set
+     * @param client - Client registered with package name to receive callbacks
+     * @return - Integer token to compare with the response
+     * Requires permission: android.Manifest.permission.MODIFY_PHONE_STATE
+     */
+    Token setNr5gNtnPreference(int slotId, in Nr5gNtnMode mode, in Client client);
 }
