@@ -92,6 +92,7 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_QUERY_NR_ICON_RESPONSE = 52;
     public static final int EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE = 53;
     public static final int EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE = 54;
+    public static final int EVENT_ON_QCARE_LOGGING_STATUS_CHANGED = 55;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -726,6 +727,17 @@ public class ExtPhoneCallbackListener {
                                + e);
                     }
                     break;
+                case EVENT_ON_QCARE_LOGGING_STATUS_CHANGED:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.onQcareLoggingStatusChange(
+                                (int) result.mData);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_ON_QCARE_LOGGING_STATUS_CHANGED :"
+                                + " Exception = " + e);
+                    }
+                    break;
                 default :
                     Log.d(TAG, "default : " + msg.what);
             }
@@ -1036,6 +1048,12 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: setTurboDsdaPreferenceResponse: token = " + token +
                 " status = " + status);
+    }
+
+    public void onQcareLoggingStatusChange(int qcareLoggingStatus)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onQcareLoggingStatusChange: qcareLoggingStatus = "
+                + qcareLoggingStatus);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1396,6 +1414,13 @@ public class ExtPhoneCallbackListener {
                 throws RemoteException {
             send(EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE, 0, 0,
                     new Result(0, token, status, 0, null));
+        }
+
+        @Override
+        public void onQcareLoggingStatusChange(int qcareLoggingStatus)
+                throws RemoteException {
+            send(EVENT_ON_QCARE_LOGGING_STATUS_CHANGED, UNUSED_ARGUMENT, UNUSED_ARGUMENT,
+                    new Result(UNUSED_SLOT_ID , null, null, SUCCESS, qcareLoggingStatus));
         }
 
         class Result {

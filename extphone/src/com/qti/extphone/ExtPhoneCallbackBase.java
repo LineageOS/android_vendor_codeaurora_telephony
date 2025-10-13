@@ -342,4 +342,8 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     public void setTurboDsdaPreferenceResponse(Token token, Status status)
             throws RemoteException {
     }
+
+    @Override
+    public void onQcareLoggingStatusChange(int qcareLoggingStatus) throws RemoteException {
+    }
 }
