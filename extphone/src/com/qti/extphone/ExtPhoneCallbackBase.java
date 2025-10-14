@@ -125,6 +125,13 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
                 QosParametersResult result) throws RemoteException {
     }
 
+    @Override
+    public void sendDataStallStatusResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: sendDataStallStatusResponse: slotId = " + slotId +
+                " token = " + token + " status" + status);
+    }
+
     public void onNrDcParam(int slotId, Token token, Status status, DcParam dcParam)
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onNrDcParam: slotId = " + slotId +

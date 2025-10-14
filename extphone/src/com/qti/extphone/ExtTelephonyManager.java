@@ -91,6 +91,7 @@ public class ExtTelephonyManager {
             FEATURE_BASE + 12;
     public static final int FEATURE_RADIO_ICON                             = FEATURE_BASE + 13;
     public static final int FEATURE_NR_5G_NTN                              = FEATURE_BASE + 14;
+    public static final int FEATURE_SEND_DATA_STALL_INFO                   = FEATURE_BASE + 15;
 
     private static ExtTelephonyManager mInstance;
 
@@ -1373,6 +1374,39 @@ public class ExtTelephonyManager {
             token = mExtTelephonyService.queryNrIcon(slotId, client);
         } catch (RemoteException ex) {
             Log.e(LOG_TAG, "queryNrIcon failed.", ex);
+        }
+        return token;
+    }
+
+    /**
+     * Notify RIL about data stall detection status.
+     * This API is called when:
+     * 1. Data stall is detected on the internet data network (when smart permanent DDS switch
+     *    preference is enabled)
+     * 2. Data stall is recovered
+     * 3. DDS switch occurs (to inform both subscriptions have no data stall)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param client - Client registered with package name to receive callbacks
+     * @param info - Data stall information (true=stalled, false=recovered/no stall)
+     * @return - Integer Token can be used to compare with the response.
+     */
+    public Token sendDataStallStatus(int slotId, Client client, DataStallInfo info)
+            throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "sendDataStallStatus: service not connected!");
+            return token;
+        }
+        if (client == null || info == null) {
+            Log.e(LOG_TAG, "sendDataStallStatus: invalid parameters");
+            return token;
+        }
+        try {
+            token = mExtTelephonyService.sendDataStallStatus(slotId, client, info);
+        } catch (RemoteException ex) {
+            Log.e(LOG_TAG, "sendDataStallStatus failed.", ex);
+            throw ex;
         }
         return token;
     }
