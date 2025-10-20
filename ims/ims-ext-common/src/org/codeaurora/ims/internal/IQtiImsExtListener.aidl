@@ -239,4 +239,11 @@ oneway interface IQtiImsExtListener {
      * @return void.
      */
     void onSetGlassesFree3dVideoCapabilityResponse(int phoneId, int result);
+
+    /**
+     * Notify Dialer that an MT dual-upgrade (VT + RTT) is about to be surfaced.
+     * IMS should invoke this before sending the VT modify request up to AOSP.
+     *
+     */
+    void onIncomingRttVtUpgrade();
 }
