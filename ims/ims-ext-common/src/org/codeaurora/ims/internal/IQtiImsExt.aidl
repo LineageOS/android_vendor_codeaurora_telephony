@@ -443,4 +443,12 @@ interface IQtiImsExt {
      * @return boolean
      */
     boolean isRttVtFeatureSupported(int phoneId);
+
+    /**
+     * Checks whether Deactivate All CallBarring feature is supported
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean true if the feature is supported, false otherwise
+     */
+    boolean isDeactivateAllCallBarringSupported(int phoneId);
 }

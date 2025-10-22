@@ -561,4 +561,14 @@ public class QtiImsExtManager {
             throw new QtiImsException("Failed to retrieve VideoCallProvider Interface : " + e);
         }
     }
+
+    public boolean isDeactivateAllCallBarringSupported(int phoneId) throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.isDeactivateAllCallBarringSupported(phoneId);
+        } catch(RemoteException e) {
+            throw new QtiImsException("Remote ImsService isDeactivateAllCallBarringSupported :"
+                + e);
+        }
+    }
 }
