@@ -525,18 +525,35 @@ public class QtiCallConstants {
     //VIDEO if only video will be played.
     public static final int CRS_TYPE_VIDEO = 1 << 1;
 
-    //Call progress info constants.
+    //Call progress info type constants.
     public static final int CALL_PROGRESS_INFO_TYPE_INVALID = -1;
     public static final int CALL_PROGRESS_INFO_TYPE_CALL_REJ_Q850 = 0;
     public static final int CALL_PROGRESS_INFO_TYPE_CALL_WAITING = 1;
     public static final int CALL_PROGRESS_INFO_TYPE_CALL_FORWARDING = 2;
     public static final int CALL_PROGRESS_INFO_TYPE_REMOTE_AVAILABLE = 3;
+    public static final int CALL_PROGRESS_INFO_TYPE_CALL_REJ_SIP = 4;
+    public static final int CALL_PROGRESS_INFO_TYPE_CALL_WARNING = 5;
     //Call progress info call rejection code
     public static final int CALL_REJECTION_CODE_INVALID = -1;
     //Call progress info extras
     public static final String EXTRAS_CALL_PROGRESS_INFO_TYPE = "CallProgInfoType";
     public static final String EXTRAS_CALL_PROGRESS_REASON_CODE = "CallProgReasonCode";
     public static final String EXTRAS_CALL_PROGRESS_REASON_TEXT = "CallProgReasonText";
+
+    //Call waiting/forwarding/remote available progress info extra
+    public static final String EXTRAS_CALL_PROGRESS_WFA_TYPE = "CallProgWfaType";
+
+    //Call reject Q850 progress info extras
+    public static final String EXTRAS_CALL_PROGRESS_REJECT_Q850_CODE = "CallProgRejectQ850Code";
+    public static final String EXTRAS_CALL_PROGRESS_REJECT_Q850_TEXT = "CallProgRejectQ850Text";
+
+    //Call reject SIP progress info extras
+    public static final String EXTRAS_CALL_PROGRESS_REJECT_SIP_CODE = "CallProgRejectSipCode";
+    public static final String EXTRAS_CALL_PROGRESS_REJECT_SIP_TEXT = "CallProgRejectSipText";
+
+    //Call warning progress info extras
+    public static final String EXTRAS_CALL_PROGRESS_WARNING_CODE = "CallProgWarningCode";
+    public static final String EXTRAS_CALL_PROGRESS_WARNING_TEXT = "CallProgWarningText";
 
     // True if the called party is alerted and ringing
     public static final String EXTRA_IS_CALLED_PARTY_RINGING = "isCalledPartyRinging";
