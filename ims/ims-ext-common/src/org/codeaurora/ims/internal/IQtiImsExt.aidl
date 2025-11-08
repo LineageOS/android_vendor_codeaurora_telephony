@@ -418,4 +418,29 @@ interface IQtiImsExt {
      * @param token unique identifier created per call session. Passed to clients through extras
      */
     IVideoCallProvider getVideoProvider(int phoneId, int token);
+
+   /**
+     * To inform IMS service for MO RTT VT upgrades/downgrades
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean
+     */
+    boolean setPendingOutgoingRttVtModifyFlag(int phoneId);
+
+    /**
+     * Notify IMS to register a listener for MT dual-upgrade (VT + RTT).
+     * IMS will invoke the listener before sending the VT modify request
+     * so Dialer can mark pending state for VT + RTT.
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @param listener callback to be notified
+     */
+    oneway void setIncomingRttVtUpgradeListener(int phoneId, IQtiImsExtListener listener);
+
+    /**
+     * Dialer needs to know for legacy modems if this feature is supported.
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean
+     */
+    boolean isRttVtFeatureSupported(int phoneId);
 }
