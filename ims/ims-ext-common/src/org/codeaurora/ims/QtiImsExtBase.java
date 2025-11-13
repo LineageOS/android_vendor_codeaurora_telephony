@@ -362,6 +362,14 @@ public abstract class QtiImsExtBase {
                     "isRttVtFeatureSupported", mExecutor,
                     QtiImsExtUtils.READ_PHONE_STATE, mContext);
         }
+
+        @Override
+        public boolean isDeactivateAllCallBarringSupported(int phoneId) throws RemoteException {
+            return QtiImsExtUtils.executeMethodAsyncForResult(() ->
+                    QtiImsExtBase.this.isDeactivateAllCallBarringSupported(phoneId),
+                    "isDeactivateAllCallBarringSupported", mExecutor,
+                    QtiImsExtUtils.READ_PHONE_STATE, mContext);
+        }
     };
 
     private QtiImsExtBinder mQtiImsExtBinder;
@@ -533,6 +541,11 @@ public abstract class QtiImsExtBase {
     }
 
     protected boolean onIsRttVtFeatureSupported(int phoneId) {
+        // no-op
+        return false;
+    }
+
+    protected boolean isDeactivateAllCallBarringSupported(int phoneId) {
         // no-op
         return false;
     }
