@@ -98,16 +98,6 @@ interface IExtPhoneCallback {
     void onNrConfigStatus(int slotId, in Token token, in Status status, in NrConfig nrConfig);
 
     /**
-    * Response to sendCdmaSms
-    * @param - slotId
-    * @param - token is the same token which is recived in sendCdmaSms
-    * @param - status SUCCESS/FAILURE based on the modem Result code
-    * @param sms Sms result struct as defined by SmsResult
-    *
-    */
-    void sendCdmaSmsResponse(int slotId, in Token token, in Status status, in SmsResult sms);
-
-    /**
     * Response to getQtiRadioCapability
     * @param - slotId
     * @param - token is the same token which is recived in getQtiRadioCapability
@@ -517,4 +507,13 @@ interface IExtPhoneCallback {
      * @param - status SUCCESS/FAILURE based on RIL NAS module response
      */
     void setTurboDsdaPreferenceResponse(in Token token, in Status status);
+
+    /**
+     * Indication to start/stop QCARE logging.
+     *
+     * @param qcareLoggingStatus The status of QCARE logging.
+     *                           0 = Stop logging
+     *                           1 = Start logging
+     */
+    void onQcareLoggingStatusChange(int qcareLoggingStatus);
 }

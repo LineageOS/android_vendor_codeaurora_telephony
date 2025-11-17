@@ -94,13 +94,6 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void sendCdmaSmsResponse(int slotId, Token token, Status status, SmsResult sms) throws
-            RemoteException {
-        Log.d(TAG, "UNIMPLEMENTED: sendCdmaSmsResponse: slotId = " + slotId +
-                " token = " + token + " status = " + status + " SmsResult = " + sms);
-    }
-
-    @Override
     public void on5gStatus(int slotId, Token token, Status status, boolean enableStatus) throws
             RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: on5gStatus: slotId = " + slotId + " token = " + token +
@@ -348,5 +341,9 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     @Override
     public void setTurboDsdaPreferenceResponse(Token token, Status status)
             throws RemoteException {
+    }
+
+    @Override
+    public void onQcareLoggingStatusChange(int qcareLoggingStatus) throws RemoteException {
     }
 }

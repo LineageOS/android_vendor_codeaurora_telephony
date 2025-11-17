@@ -314,17 +314,6 @@ interface IExtPhone {
     Token queryNrConfig(int slotId, in Client client);
 
     /**
-    * Send a CDMA SMS message on a given slotId.
-    * @param - slotId
-    * @param - pdu contains the message to be sent
-    *         callbacks.
-    * @param expectMore more messages are expected to be sent or not
-    * @return Integer Token to be used to compare with the response.
-    * Requires permission: android.Manifest.permission.MODIFY_PHONE_STATE
-    */
-    Token sendCdmaSms(int slotId, in byte[] pdu, boolean expectMore, in Client client);
-
-    /**
     * Get phone radio capability.
     * @param - slotId
     * @param - client registered with packagename to receive callbacks.
