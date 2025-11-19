@@ -41,6 +41,7 @@ import com.qti.extphone.CellularRoamingPreference;
 import com.qti.extphone.CiwlanConfig;
 import com.qti.extphone.Client;
 import com.qti.extphone.DataPriorityPreference;
+import com.qti.extphone.DataStallInfo;
 import com.qti.extphone.IDepersoResCallback;
 import com.qti.extphone.IExtPhoneCallback;
 import com.qti.extphone.MsimPreference;
@@ -804,4 +805,19 @@ interface IExtPhone {
      * Requires permission: android.Manifest.permission.MODIFY_PHONE_STATE
      */
     Token setNr5gNtnPreference(int slotId, in Nr5gNtnMode mode, in Client client);
+
+    /**
+     * Notify RIL about data stall detection status.
+     * This API is called when:
+     * 1. Data stall is detected on the internet data network (when smart permanent DDS switch
+     *    preference is enabled)
+     * 2. Data stall is recovered
+     * 3. DDS switch occurs (to inform both subscriptions have no data stall)
+     *
+     * @param slotId - Slot ID for which this request is sent
+     * @param client - Client registered with package name to receive callbacks
+     * @param info - Data stall information (true=stalled, false=recovered/no stall)
+     * @return - Integer Token can be used to compare with the response.
+     */
+    Token sendDataStallStatus(int slotId, in Client client, in DataStallInfo info);
 }
