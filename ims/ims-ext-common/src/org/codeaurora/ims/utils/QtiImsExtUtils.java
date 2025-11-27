@@ -863,7 +863,7 @@ public class QtiImsExtUtils {
     // Returns true if Carrier supports video CRS
     public static boolean isVideoCrsSupported(int phoneId, Context context) {
         return isCarrierConfigEnabled(phoneId, context,
-                QtiCarrierConfigs.KEY_CARRIER_VIDEO_CRS_SUPPORTED);
+                CarrierConfigManager.KEY_SUPPORTS_CUSTOMIZED_RINGING_SIGNAL_BOOL);
     }
 
     // Returns true if Carrier supports video CRBT

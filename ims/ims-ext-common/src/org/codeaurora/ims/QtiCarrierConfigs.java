@@ -156,12 +156,6 @@ public class QtiCarrierConfigs {
     public static final String KEY_CARRIER_B2C_ENRICHED_CALLING_SUPPORTED =
             "carrier_b2c_enriched_calling_supported_bool";
 
-    /* Config to determine if Carrier supports video CRS
-     * true - if video CRS is supported else false
-     */
-    public static final String KEY_CARRIER_VIDEO_CRS_SUPPORTED =
-            "carrier_video_crs_supported_bool";
-
     /* Config to determine if Carrier supports video CRBT
      * true - if video CRBT is supported else false
      */
