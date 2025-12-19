@@ -869,7 +869,7 @@ public class QtiImsExtUtils {
     // Returns true if Carrier supports video CRBT
     public static boolean isVideoCrbtSupported(int phoneId, Context context) {
         return isCarrierConfigEnabled(phoneId, context,
-                QtiCarrierConfigs.KEY_CARRIER_VIDEO_CRBT_SUPPORTED);
+                CarrierConfigManager.KEY_SUPPORTS_VIDEO_RINGBACK_BOOL);
     }
 
     // Returns true if carrier supports call progress notification.
@@ -982,7 +982,7 @@ public class QtiImsExtUtils {
     // Returns true if Carrier supports visualized voice call
     public static boolean isVisualizedVoiceSupported(int phoneId, Context context) {
         return isCarrierConfigEnabled(phoneId, context,
-                QtiCarrierConfigs.KEY_CARRIER_VISUALIZED_VOICE_SUPPORTED);
+                CarrierConfigManager.KEY_SUPPORTS_UNIDIRECTIONAL_VIDEO_SERVICE_BOOL);
     }
 
     // Returns int array if carrier supports given carrierConfig otherwise null.

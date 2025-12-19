@@ -156,12 +156,6 @@ public class QtiCarrierConfigs {
     public static final String KEY_CARRIER_B2C_ENRICHED_CALLING_SUPPORTED =
             "carrier_b2c_enriched_calling_supported_bool";
 
-    /* Config to determine if Carrier supports video CRBT
-     * true - if video CRBT is supported else false
-     */
-    public static final String KEY_CARRIER_VIDEO_CRBT_SUPPORTED =
-            "config_enable_video_crbt";
-
     /* Config to determine if Carrier supports showing call progress notiication during alerting.
      * true - if call progress notification is supported else false
      */
@@ -203,12 +197,6 @@ public class QtiCarrierConfigs {
      */
     public static final String KEY_CARRIER_VIDEO_ONLINE_SERVICE_SUPPORTED =
         "carrier_video_online_service_supported_bool";
-
-    /* Config to determine if Carrier supports visualized voice call
-     * true - if visualized voice call is supported else false
-     */
-    public static final String KEY_CARRIER_VISUALIZED_VOICE_SUPPORTED =
-        "carrier_visualized_voice_supported_bool";
 
     /* Config to determine if Carrier supports glasses free 3D video
      * true - if glasses free 3D video is supported else false
