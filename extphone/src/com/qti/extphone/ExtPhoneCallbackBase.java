@@ -59,36 +59,41 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     private static final String TAG = "ExtPhoneCallbackBase";
 
     @Override
-    public void onNrIconType(int slotId, Token token, Status status, NrIconType
-            nrIconType) throws RemoteException {
+    public void onNrIconType(int slotId, Token token, Status status, NrIconType nrIconType)
+            throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onNrIconType: slotId = " + slotId + " token = " + token +
                 " status = " + status + " NrIconType = " + nrIconType);
     }
 
     @Override
-    public void onEnableEndc(int slotId, Token token, Status status) throws
-            RemoteException {
+    public void setNr5gNtnPreferenceResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: setNr5gNtnPreferenceResponse: slotId = " + slotId +
+                " token = " + token + " status = " + status);
+    }
+
+    @Override
+    public void onEnableEndc(int slotId, Token token, Status status) throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onEnableEndc: slotId = " + slotId + " token = " + token +
                 " status = " + status);
     }
 
     @Override
-    public void onEndcStatus(int slotId, Token token, Status status, boolean enableStatus) throws
-            RemoteException {
+    public void onEndcStatus(int slotId, Token token, Status status, boolean enableStatus)
+            throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onEndcStatus: slotId = " + slotId + " token = " + token +
                 " status = " + status + " enableStatus = " + enableStatus);
     }
 
     @Override
-    public void onSetNrConfig(int slotId, Token token, Status status) throws
-            RemoteException {
+    public void onSetNrConfig(int slotId, Token token, Status status) throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onSetNrConfig: slotId = " + slotId + " token = " + token +
                 " status = " +status);
     }
 
     @Override
-    public void onNrConfigStatus(int slotId, Token token, Status status, NrConfig nrConfig) throws
-            RemoteException {
+    public void onNrConfigStatus(int slotId, Token token, Status status, NrConfig nrConfig)
+            throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onNrConfigStatus: slotId = " + slotId + " token = " + token +
                 " status = " + status + " NrConfig = " + nrConfig);
     }
@@ -102,10 +107,10 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
 
     @Override
     public void onAnyNrBearerAllocation(int slotId, Token token, Status status,
-                                        BearerAllocationStatus bearerStatus) throws
-            RemoteException {
-        Log.d(TAG, "UNIMPLEMENTED: onNrBearerAllocationChange: slotId = " + slotId +
-                " token = " + token + " status = " + status + " bearerStatus = " + bearerStatus);
+                                        BearerAllocationStatus bearerStatus)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onNrBearerAllocationChange: slotId = " + slotId
+                + " token = " + token + " status = " + status + " bearerStatus = " + bearerStatus);
     }
 
     @Override
@@ -120,8 +125,8 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
                 QosParametersResult result) throws RemoteException {
     }
 
-    public void onNrDcParam(int slotId, Token token, Status status, DcParam dcParam) throws
-            RemoteException {
+    public void onNrDcParam(int slotId, Token token, Status status, DcParam dcParam)
+            throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onNrDcParam: slotId = " + slotId +
                 " token = " + token + " status" + status + " dcParam = " + dcParam);
     }
@@ -135,15 +140,15 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void on5gConfigInfo(int slotId, Token token, Status status, NrConfigType
-            nrConfigType) throws RemoteException {
+    public void on5gConfigInfo(int slotId, Token token, Status status, NrConfigType nrConfigType)
+            throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: on5gConfigInfo: slotId = " + slotId + " token = " +
                 token + " " + "status" + status + " NrConfigType = " + nrConfigType);
     }
 
     @Override
-    public void onSignalStrength(int slotId, Token token, Status status, SignalStrength
-            signalStrength) throws RemoteException {
+    public void onSignalStrength(int slotId, Token token, Status status,
+            SignalStrength signalStrength) throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onSignalStrength: slotId = " + slotId +
                 " token = " + token + " " + "status" + status +
                 " signalStrength = " + signalStrength);
@@ -157,22 +162,22 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void queryCallForwardStatusResponse(Status status, QtiCallForwardInfo[] infos) throws
-            RemoteException {
+    public void queryCallForwardStatusResponse(Status status, QtiCallForwardInfo[] infos)
+            throws RemoteException {
         Log.d(TAG, "queryCallForwardStatusResponse: status = " + status + " CallForwardInfo = "
                  + infos);
     }
 
     @Override
-    public void getFacilityLockForAppResponse(Status status, int[] response) throws
-            RemoteException {
+    public void getFacilityLockForAppResponse(Status status, int[] response)
+            throws RemoteException {
         Log.d(TAG, "getFacilityLockForAppResponse: status = " + status + " response = "
                  + response);
     }
 
     @Override
-    public void setSmartDdsSwitchToggleResponse(Token token, boolean result) throws
-            RemoteException {
+    public void setSmartDdsSwitchToggleResponse(Token token, boolean result)
+            throws RemoteException {
         Log.d(TAG, "setSmartDdsSwitchToggleResponse: token = " + token +  " result = " + result);
     }
 
@@ -219,18 +224,18 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void startNetworkScanResponse(int slotId, Token token, int errorCode) throws
-            RemoteException {
+    public void startNetworkScanResponse(int slotId, Token token, int errorCode)
+            throws RemoteException {
     }
 
     @Override
-    public void stopNetworkScanResponse(int slotId, Token token, int errorCode) throws
-            RemoteException {
+    public void stopNetworkScanResponse(int slotId, Token token, int errorCode)
+            throws RemoteException {
     }
 
     @Override
-    public void setNetworkSelectionModeManualResponse(int slotId, Token token, int errorCode) throws
-            RemoteException {
+    public void setNetworkSelectionModeManualResponse(int slotId, Token token, int errorCode)
+            throws RemoteException {
     }
 
     @Override
@@ -305,8 +310,8 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void setCellularRoamingPreferenceResponse(int slotId, Token token, Status status)
-            throws RemoteException {
+    public void setCellularRoamingPreferenceResponse(
+            int slotId, Token token, Status status) throws RemoteException {
     }
 
     @Override
@@ -320,8 +325,8 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
     }
 
     @Override
-    public void setCiwlanModeUserPreferenceResponse(int slotId, Token token, Status status)
-            throws RemoteException {
+    public void setCiwlanModeUserPreferenceResponse(
+            int slotId, Token token, Status status) throws RemoteException {
     }
 
     @Override
@@ -345,5 +350,22 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
 
     @Override
     public void onQcareLoggingStatusChange(int qcareLoggingStatus) throws RemoteException {
+    }
+
+    public void onTrafficProtectionStatusChanged(int slotId, boolean protectionStatus)
+            throws RemoteException {
+    }
+
+    @Override
+    public void onRadioIconResponse(int slotId, Token token, Status status, RadioIcon radioIcon)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconResponse: slotId = " + slotId + " token = " + token
+                + " status = " + status + " radioIcon = " + radioIcon);
+    }
+
+    @Override
+    public void onRadioIconChange(int slotId, RadioIcon radioIcon) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onRadioIconChange: slotId = " + slotId
+                + " radioIcon = " + radioIcon);
     }
 }

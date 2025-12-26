@@ -337,6 +337,39 @@ public abstract class QtiImsExtBase {
                     "onGetVideoProvider", mExecutor,
                     QtiImsExtUtils.MODIFY_PHONE_STATE, mContext);
         }
+
+        @Override
+        public boolean setPendingOutgoingRttVtModifyFlag(int phoneId) throws RemoteException {
+            return QtiImsExtUtils.executeMethodAsyncForResult(() ->
+                    QtiImsExtBase.this.onSetPendingOutgoingRttVtModifyFlag(phoneId),
+                    "setPendingOutgoingRttVtModifyFlag", mExecutor,
+                    QtiImsExtUtils.MODIFY_PHONE_STATE, mContext);
+        }
+
+        @Override
+        public void setIncomingRttVtUpgradeListener(int phoneId, IQtiImsExtListener listener)
+                throws RemoteException {
+            QtiImsExtUtils.executeMethodAsync(() ->
+                    QtiImsExtBase.this.onSetIncomingRttVtUpgradeListener(phoneId, listener),
+                    "setIncomingRttVtUpgradeListener", getBinderExecutor(),
+                    QtiImsExtUtils.MODIFY_PHONE_STATE, mContext);
+        }
+
+        @Override
+        public boolean isRttVtFeatureSupported(int phoneId) throws RemoteException {
+            return QtiImsExtUtils.executeMethodAsyncForResult(() ->
+                    QtiImsExtBase.this.onIsRttVtFeatureSupported(phoneId),
+                    "isRttVtFeatureSupported", mExecutor,
+                    QtiImsExtUtils.READ_PHONE_STATE, mContext);
+        }
+
+        @Override
+        public boolean isDeactivateAllCallBarringSupported(int phoneId) throws RemoteException {
+            return QtiImsExtUtils.executeMethodAsyncForResult(() ->
+                    QtiImsExtBase.this.isDeactivateAllCallBarringSupported(phoneId),
+                    "isDeactivateAllCallBarringSupported", mExecutor,
+                    QtiImsExtUtils.READ_PHONE_STATE, mContext);
+        }
     };
 
     private QtiImsExtBinder mQtiImsExtBinder;
@@ -496,5 +529,24 @@ public abstract class QtiImsExtBase {
     protected IVideoCallProvider onGetVideoProvider(int phoneId, int token) {
         // no-op
         return null;
+    }
+
+    protected boolean onSetPendingOutgoingRttVtModifyFlag(int phoneId) {
+        // no-op
+        return false;
+    }
+
+    protected void onSetIncomingRttVtUpgradeListener(int phoneId, IQtiImsExtListener listener) {
+        // no-op
+    }
+
+    protected boolean onIsRttVtFeatureSupported(int phoneId) {
+        // no-op
+        return false;
+    }
+
+    protected boolean isDeactivateAllCallBarringSupported(int phoneId) {
+        // no-op
+        return false;
     }
 }

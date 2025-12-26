@@ -217,6 +217,37 @@ public class QtiImsExtManager {
         }
     }
 
+    public boolean setPendingOutgoingRttVtModifyFlag(int phoneId)
+            throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.setPendingOutgoingRttVtModifyFlag(phoneId);
+        } catch (RemoteException e) {
+            throw new QtiImsException(
+                    "Remote ImsService setPendingOutgoingRttVtModifyFlag: " + e);
+        }
+    }
+
+    public void setIncomingRttVtUpgradeListener(int phoneId, QtiImsExtListenerBaseImpl listener)
+            throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            mQtiImsExt.setIncomingRttVtUpgradeListener(phoneId, listener.getBinder());
+        } catch(RemoteException e) {
+            throw new QtiImsException("Remote ImsService setIncomingRttVtUpgradeListener : " + e);
+        }
+    }
+
+    public boolean isRttVtFeatureSupported(int phoneId)
+            throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.isRttVtFeatureSupported(phoneId);
+        } catch (RemoteException e) {
+            throw new QtiImsException("Remote ImsService isRttVtFeatureSupported: " + e);
+        }
+    }
+
     /**
      * Check if binder is available,
      * if binder still doesn't exists throw {@link QtiImsException}
@@ -528,6 +559,16 @@ public class QtiImsExtManager {
             return mQtiImsExt.getVideoProvider(phoneId, token);
         } catch (RemoteException e) {
             throw new QtiImsException("Failed to retrieve VideoCallProvider Interface : " + e);
+        }
+    }
+
+    public boolean isDeactivateAllCallBarringSupported(int phoneId) throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.isDeactivateAllCallBarringSupported(phoneId);
+        } catch(RemoteException e) {
+            throw new QtiImsException("Remote ImsService isDeactivateAllCallBarringSupported :"
+                + e);
         }
     }
 }

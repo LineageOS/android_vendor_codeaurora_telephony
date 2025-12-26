@@ -198,7 +198,15 @@ public abstract class QtiImsExtListenerBaseImpl {
                     "onSetGlassesFree3dVideoCapabilityResponse", mExecutor);
         }
 
-    }
+        @Override
+        public void onIncomingRttVtUpgrade()
+             throws RemoteException {
+            QtiImsExtUtils.executeMethodAsync(() ->
+                    QtiImsExtListenerBaseImpl.this.
+                    onIncomingRttVtUpgrade(),
+                    "onIncomingRttVtUpgrade", mExecutor);
+        }
+   };
 
     private Executor mExecutor;
     private QtiImsExtListenerBinder mListener;
@@ -284,5 +292,8 @@ public abstract class QtiImsExtListenerBaseImpl {
     }
 
     public void onSetGlassesFree3dVideoCapabilityResponse(int phoneId, int result) {
+    }
+
+    public void onIncomingRttVtUpgrade() {
     }
 }
