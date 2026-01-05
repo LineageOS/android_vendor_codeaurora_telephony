@@ -97,6 +97,7 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_GET_RADIO_ICON_RESPONSE = 57;
     public static final int EVENT_ON_RADIO_ICON_CHANGE = 58;
     public static final int EVENT_SET_NR5G_NTN_PREFERENCE_RESPONSE = 59;
+    public static final int EVENT_SEND_DATA_STALL_STATUS_RESPONSE = 60;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -742,6 +743,7 @@ public class ExtPhoneCallbackListener {
                                 "EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE : Exception = " + e);
                     }
                     break;
+
                 case EVENT_ON_TRAFFIC_PROTECTION_STATUS_CHANGED:
                     try {
                         IExtPhoneCallbackStub.Result result =
@@ -797,6 +799,17 @@ public class ExtPhoneCallbackListener {
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
                         Log.e(TAG, "EVENT_SET_NR5G_NTN_PREFERENCE_RESPONSE : Exception = " + e);
+                    }
+                    break;
+
+                case EVENT_SEND_DATA_STALL_STATUS_RESPONSE:
+                    try {
+                        IExtPhoneCallbackStub.Result result =
+                                (IExtPhoneCallbackStub.Result) msg.obj;
+                        extPhoneCallbackListener.sendDataStallStatusResponse(result.mSlotId,
+                                result.mToken, result.mStatus);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_SEND_DATA_STALL_STATUS_RESPONSE : Exception = " + e);
                     }
                     break;
 
@@ -1139,6 +1152,12 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: setNr5gNtnPreferenceResponse: slotId = " + slotId +
                 " token = " + token + " status = " + status);
+    }
+
+    public void sendDataStallStatusResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: sendDataStallStatusResponse: slotId = " + slotId +
+                ", token = " + token + ", status = " + status);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1534,6 +1553,13 @@ public class ExtPhoneCallbackListener {
                 throws RemoteException {
             send(EVENT_SET_NR5G_NTN_PREFERENCE_RESPONSE, 0, 0,
                     new Result(slotId, token, status, -1, null));
+        }
+
+        @Override
+        public void sendDataStallStatusResponse(int slotId, Token token, Status status)
+                throws RemoteException {
+            send(EVENT_SEND_DATA_STALL_STATUS_RESPONSE, 0, 0,
+                    new Result(slotId, token, status, 0, null));
         }
 
         class Result {

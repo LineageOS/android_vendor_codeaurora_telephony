@@ -559,4 +559,13 @@ interface IExtPhoneCallback {
      * @param status - SUCCESS/FAILURE based on the modem result code
      */
     void setNr5gNtnPreferenceResponse(int slotId, in Token token, in Status status);
+
+    /**
+     * Response to sendDataStallStatus
+     *
+     * @param slotId - Slot ID for which this response is sent
+     * @param token - This is the same token which is sent from sendDataStallStatus
+     * @param status - SUCCESS/FAILURE based on the modem result code
+     */
+    void sendDataStallStatusResponse(int slotId, in Token token, in Status status);
 }
