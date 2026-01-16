@@ -92,6 +92,7 @@ public class ExtTelephonyManager {
     public static final int FEATURE_RADIO_ICON                             = FEATURE_BASE + 13;
     public static final int FEATURE_NR_5G_NTN                              = FEATURE_BASE + 14;
     public static final int FEATURE_SEND_DATA_STALL_INFO                   = FEATURE_BASE + 15;
+    public static final int FEATURE_AUXILIARY_RADIO_ICON_INFO              = FEATURE_BASE + 16;
 
     private static ExtTelephonyManager mInstance;
 
@@ -1687,6 +1688,40 @@ public class ExtTelephonyManager {
             token = mExtTelephonyService.setNr5gNtnPreference(slotId, mode, client);
         } catch (RemoteException ex) {
             Log.e(LOG_TAG, "setNr5gNtnPreference failed.", ex);
+        }
+
+        return token;
+    }
+
+    /**
+     * Issues a request to retrieve auxiliary radio icon information that is common across
+     * subscriptions. This API is used by framework clients to obtain inforomation such as the DSDA
+     * category details (NONE, GENERAL, TURBO) that may influence how the cellular icon is rendered
+     * in UI.
+     *
+     * The request is asynchronous, and its result is returned through
+     * onAuxiliaryRadioIconInfoResponse.
+     *
+     * @param client registered with package name to receive callbacks
+     * @return integer token to compare with the response
+     * @see IExtPhoneCallback#onAuxiliaryRadioIconInfoResponse
+     */
+    public Token getAuxiliaryRadioIconInfo(Client client) throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "getAuxiliaryRadioIconInfo: service not connected!");
+            return token;
+        }
+
+        if (!isFeatureSupported(FEATURE_AUXILIARY_RADIO_ICON_INFO)) {
+            Log.e(LOG_TAG, "getAuxiliaryRadioIconInfo: feature not supported!");
+            return token;
+        }
+
+        try {
+            token = mExtTelephonyService.getAuxiliaryRadioIconInfo(client);
+        } catch (RemoteException ex) {
+            Log.e(LOG_TAG, "getAuxiliaryRadioIconInfo failed.", ex);
         }
 
         return token;

@@ -837,4 +837,19 @@ interface IExtPhone {
      *        - 2: DSDS (dual SIM dual standby)
      */
     void switchMultiSimConfig(int config);
+
+    /**
+     * Issues a request to retrieve auxiliary radio icon information that is common across
+     * subscriptions. This API is used by framework clients to
+     * obtain inforomation such as the DSDA category details (NONE, GENERAL, TURBO) that may
+     * influence how the cellular icon is rendered in UI.
+     *
+     * The request is asynchronous, and its result is returned through
+     * onAuxiliaryRadioIconInfoResponse.
+     *
+     * @param client - Client registered with package name to receive callbacks
+     *
+     * @see IExtPhoneCallback#onAuxiliaryRadioIconInfoResponse
+     */
+    Token getAuxiliaryRadioIconInfo(in Client client);
 }

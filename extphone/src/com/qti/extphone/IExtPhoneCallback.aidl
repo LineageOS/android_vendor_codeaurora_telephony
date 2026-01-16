@@ -35,6 +35,7 @@
 
 package com.qti.extphone;
 
+import com.qti.extphone.AuxiliaryRadioIconInfo;
 import android.telephony.CellInfo;
 import com.qti.extphone.CiwlanConfig;
 import com.qti.extphone.BearerAllocationStatus;
@@ -568,4 +569,35 @@ interface IExtPhoneCallback {
      * @param status - SUCCESS/FAILURE based on the modem result code
      */
     void sendDataStallStatusResponse(int slotId, in Token token, in Status status);
+
+    /**
+     * Unsolicited indication sent when the auxiliary radio icon information changes.
+     *
+     * This notification is triggered without a corresponding request and is used to inform clients
+     * of updates to the auxiliary radio icon such as the DSDA category information so the UI can
+     * reflect the current modem state (for example, displaying the Turbo DSDA icon).
+     *
+     * @param auxIconInfo The updated auxiliary radio icon information
+     *
+     * @see AuxiliaryRadioIconInfo
+     */
+    void onAuxiliaryRadioIconInfoChange(in AuxiliaryRadioIconInfo auxIconInfo);
+
+    /**
+     * Callback invoked in response to the getAuxiliaryRadioIconInfo request.
+     *
+     * This method delivers the framework-facing auxiliary radio icon information originating from
+     * the modem, encapsulated in the AuxiliaryRadioIconInfo parcelable. The Status field indicates
+     * whether the request succeeded or failed, and the Token allows the caller to correlate the
+     * response with its original request.
+     *
+     * @param token       The token associated with the original request.
+     * @param status      The result of the request, including success or error codes.
+     * @param auxIconInfo The auxiliary radio icon information reported by the modem,
+     *
+     * @see AuxiliaryRadioIconInfo
+     * @see IExtPhone#getAuxiliaryRadioIconInfo
+     */
+    void onAuxiliaryRadioIconInfoResponse(in Token token, in Status status,
+                                          in AuxiliaryRadioIconInfo auxIconInfo);
 }
