@@ -1625,6 +1625,34 @@ public class ExtTelephonyManager {
     }
 
     /**
+     * Switch the device multi-SIM configuration.
+     *
+     * This API is used by the vendor DSDS<->SS auto-switch feature (for example when
+     * {@code persist.vendor.radio.dsds_to_ss = 2}) to force the apps into a target
+     * multi-SIM mode.
+     *
+     * Typical usage:
+     * - Switch to SS (single-SIM) when fewer than two subscriptions are ACTIVE.
+     * - Switch to DSDS (dual-SIM dual-standby) when device DSDS Mode is needed.
+     *
+     * @param config Target multi-SIM configuration to apply.
+     *        - 1: SS (single SIM)
+     *        - 2: DSDS (dual SIM dual standby)
+     */
+    public void switchMultiSimConfig(int config) {
+        if (!isServiceConnected()) {
+             Log.e(LOG_TAG, "service not connected!");
+             return;
+         }
+         try {
+             mExtTelephonyService.switchMultiSimConfig(config);
+         } catch (RemoteException e) {
+             Log.e(LOG_TAG, "switchMultiSimConfig, remote exception", e);
+         }
+    }
+
+
+    /**
      * Set NR 5G NTN (Non-Terrestrial Network) preference.
      *
      * This API allows setting the NR 5G NTN mode to:

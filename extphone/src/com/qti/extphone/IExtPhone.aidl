@@ -820,4 +820,21 @@ interface IExtPhone {
      * @return - Integer Token can be used to compare with the response.
      */
     Token sendDataStallStatus(int slotId, in Client client, in DataStallInfo info);
+
+    /**
+     * Switch the device multi-SIM configuration.
+     *
+     * This API is currently used by the vendor DSDS<->SS auto-switch feature (for example when
+     * {@code persist.vendor.radio.dsds_to_ss = 2}) to force the apps into a target
+     * multi-SIM mode.
+     *
+     * Typical usage:
+     * - Switch to SS (single-SIM) when fewer than two subscriptions are ACTIVE.
+     * - Switch to DSDS (dual-SIM dual-standby) when device DSDS Mode is needed.
+     *
+     * @param config Target multi-SIM configuration to apply.
+     *        - 1: SS (single SIM)
+     *        - 2: DSDS (dual SIM dual standby)
+     */
+    void switchMultiSimConfig(int config);
 }
