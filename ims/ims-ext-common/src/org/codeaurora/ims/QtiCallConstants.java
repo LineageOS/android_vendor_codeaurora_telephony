@@ -510,10 +510,6 @@ public class QtiCallConstants {
     // This is success case, received when all the GPS errors are resolved.
     public static final int REG_ERROR_GEO_LOCATION_STATUS_RESOLVED = 2003;
 
-    /* CRS type extra key */
-    public static final String EXTRA_CRS_TYPE = "crsType";
-    /* Original call type extra key */
-    public static final String EXTRA_ORIGINAL_CALL_TYPE = "originalCallType";
     /* Slience UI before CRS RTP come extra key */
     public static final String EXTRA_IS_PREPARATORY = "isPreparatory";
     /* Ims vendor callId extra key */
