@@ -561,7 +561,7 @@ public class QtiImsExtUtils {
 
     public static boolean allowVideoCallsInLowBattery(int phoneId, Context context) {
         return isCarrierConfigEnabled(phoneId, context,
-                QtiCarrierConfigs.ALLOW_VIDEO_CALL_IN_LOW_BATTERY);
+                CarrierConfigManager.KEY_ALLOW_VIDEO_CALL_IN_LOW_BATTERY_BOOL);
     }
 
     public static boolean shallHidePreviewInVtConference(int phoneId, Context context) {
