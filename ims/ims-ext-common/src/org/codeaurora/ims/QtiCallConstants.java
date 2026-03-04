@@ -211,10 +211,6 @@ public class QtiCallConstants {
        on LTE/WLAN RATs */
     public static final String VIDEO_CALL_DATA_USAGE_KEY = "dataUsage";
 
-    /* low battery extra key name that contains a boolean value,
-       TRUE meaning battery is low else FALSE */
-    public static final String LOW_BATTERY_EXTRA_KEY = "LowBattery";
-
    /* Upgrade/downgrade of a volte/vt call due to unknown reason. */
     public static final int CAUSE_CODE_UNSPECIFIED = 0;
 
