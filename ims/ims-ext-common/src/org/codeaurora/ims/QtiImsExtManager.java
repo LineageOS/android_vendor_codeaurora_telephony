@@ -571,4 +571,14 @@ public class QtiImsExtManager {
                 + e);
         }
     }
+
+    public boolean isIntelligentCallingFeatureSupported(int phoneId) throws QtiImsException {
+        validateInvariants(phoneId);
+        try {
+            return mQtiImsExt.isIntelligentCallingFeatureSupported(phoneId);
+        } catch(RemoteException e) {
+            throw new QtiImsException("Remote ImsService isIntelligentCallingFeatureSupported :"
+                + e);
+        }
+    }
 }
