@@ -820,4 +820,36 @@ interface IExtPhone {
      * @return - Integer Token can be used to compare with the response.
      */
     Token sendDataStallStatus(int slotId, in Client client, in DataStallInfo info);
+
+    /**
+     * Switch the device multi-SIM configuration.
+     *
+     * This API is currently used by the vendor DSDS<->SS auto-switch feature (for example when
+     * {@code persist.vendor.radio.dsds_to_ss = 2}) to force the apps into a target
+     * multi-SIM mode.
+     *
+     * Typical usage:
+     * - Switch to SS (single-SIM) when fewer than two subscriptions are ACTIVE.
+     * - Switch to DSDS (dual-SIM dual-standby) when device DSDS Mode is needed.
+     *
+     * @param config Target multi-SIM configuration to apply.
+     *        - 1: SS (single SIM)
+     *        - 2: DSDS (dual SIM dual standby)
+     */
+    void switchMultiSimConfig(int config);
+
+    /**
+     * Issues a request to retrieve auxiliary radio icon information that is common across
+     * subscriptions. This API is used by framework clients to
+     * obtain inforomation such as the DSDA category details (NONE, GENERAL, TURBO) that may
+     * influence how the cellular icon is rendered in UI.
+     *
+     * The request is asynchronous, and its result is returned through
+     * onAuxiliaryRadioIconInfoResponse.
+     *
+     * @param client - Client registered with package name to receive callbacks
+     *
+     * @see IExtPhoneCallback#onAuxiliaryRadioIconInfoResponse
+     */
+    Token getAuxiliaryRadioIconInfo(in Client client);
 }

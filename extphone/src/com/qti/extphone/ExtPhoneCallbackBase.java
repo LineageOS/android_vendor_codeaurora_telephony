@@ -375,4 +375,17 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
         Log.d(TAG, "UNIMPLEMENTED: onRadioIconChange: slotId = " + slotId
                 + " radioIcon = " + radioIcon);
     }
+
+    @Override
+    public void onAuxiliaryRadioIconInfoChange(AuxiliaryRadioIconInfo auxIconInfo)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoChange: auxIconInfo = " + auxIconInfo);
+    }
+
+    @Override
+    public void onAuxiliaryRadioIconInfoResponse(Token token, Status status,
+            AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoResponse: token = " + token
+                + " status = " + status + " auxIconInfo = " + auxIconInfo);
+    }
 }

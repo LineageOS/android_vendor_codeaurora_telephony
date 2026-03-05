@@ -98,6 +98,8 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_ON_RADIO_ICON_CHANGE = 58;
     public static final int EVENT_SET_NR5G_NTN_PREFERENCE_RESPONSE = 59;
     public static final int EVENT_SEND_DATA_STALL_STATUS_RESPONSE = 60;
+    public static final int EVENT_ON_AUXILIARY_RADIO_ICON_INFO_CHANGE = 61;
+    public static final int EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE = 62;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -183,11 +185,12 @@ public class ExtPhoneCallbackListener {
                 Log.d(TAG, "handleMessage ExtPhoneCallbackListener is destroyed already");
                 return;
             }
+
+            final IExtPhoneCallbackStub.Result result = (IExtPhoneCallbackStub.Result) msg.obj;
             switch (msg.what) {
+
                 case EVENT_GET_FACILITY_LOCK_FOR_APP_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.getFacilityLockForAppResponse(
                                 result.mStatus, (int[]) result.mData);
                     } catch (RemoteException e) {
@@ -196,8 +199,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_GET_NETWORK_SELECTION_MODE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.getNetworkSelectionModeResponse(
                                 result.mSlotId, result.mToken, result.mStatus,
                                 (NetworkSelectionMode) result.mData);
@@ -207,8 +208,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_GET_QOS_PARAMETERS_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.getQosParametersResponse(result.mSlotId,
                                 result.mToken, result.mStatus,
                                 (QosParametersResult) result.mData);
@@ -218,8 +217,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_GET_QTIRADIO_CAPABILITY_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.getQtiRadioCapabilityResponse(
                                 result.mSlotId, result.mToken, result.mStatus,
                                 (int) result.mData);
@@ -229,8 +226,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_GET_SECURE_MODE_STATUS_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.getSecureModeStatusResponse(result.mToken,
                                 result.mStatus, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -239,8 +234,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_NETWORK_SCAN_RESULT:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.networkScanResult(result.mSlotId,
                                 result.mToken, result.mStatus.get(), result.mError,
                                 (List<CellInfo>) result.mData);
@@ -250,8 +243,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_5G_CONFIG_INFO:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.on5gConfigInfo(result.mSlotId,
                                 result.mToken, result.mStatus, (NrConfigType) result.mData);
                     } catch (RemoteException e) {
@@ -260,8 +251,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_5G_STATUS:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.on5gStatus(result.mSlotId, result.mToken,
                                 result.mStatus, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -270,8 +259,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_ANY_NR_BEARER_ALLOCATION:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onAnyNrBearerAllocation(result.mSlotId,
                                 result.mToken, result.mStatus,
                                 (BearerAllocationStatus) result.mData);
@@ -281,8 +268,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DATA_DEACTIVATE_DELAY_TIME:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDataDeactivateDelayTime(result.mSlotId,
                                 (long) result.mData);
                     } catch (RemoteException e) {
@@ -291,8 +276,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_CAPABILITY_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchCapabilityChange(
                                 result.mSlotId, result.mToken, result.mStatus,
                                 (boolean) result.mData);
@@ -302,8 +285,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_CONFIG_CAPABILITY_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchConfigCapabilityChanged(
                                 result.mToken, result.mStatus,
                                 (boolean) result.mData);
@@ -315,8 +296,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_CRITERIA_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchCriteriaChange(result.mSlotId,
                                 (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -325,8 +304,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_CONFIG_CRITERIA_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchConfigCriteriaChanged(
                                 (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -336,8 +313,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_RECOMMENDATION:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchRecommendation(result.mSlotId,
                                 (int) result.mData);
                     } catch (RemoteException e) {
@@ -346,8 +321,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DDS_SWITCH_CONFIG_RECOMMENDATION:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDdsSwitchConfigRecommendation(
                                 (int) result.mData);
                     } catch (RemoteException e) {
@@ -357,8 +330,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_ENABLE_ENDC:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onEnableEndc(result.mSlotId,
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -367,8 +338,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_ENDC_STATUS:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onEndcStatus(result.mSlotId,
                                 result.mToken, result.mStatus, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -377,8 +346,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_EPDG_OVER_CELLULAR_DATA_SUPPORTED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onEpdgOverCellularDataSupported(
                                 result.mSlotId, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -388,8 +355,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_IMEI_TYPE_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onImeiTypeChanged(
                                 (QtiImeiInfo[]) result.mData);
                     } catch (RemoteException e) {
@@ -398,8 +363,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_NR_CONFIG_STATUS:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onNrConfigStatus(result.mSlotId,
                                 result.mToken, result.mStatus, (NrConfig) result.mData);
                     } catch (RemoteException e) {
@@ -408,8 +371,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_NR_DC_PARAM:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onNrDcParam(result.mSlotId,
                                 result.mToken, result.mStatus, (DcParam) result.mData);
                     } catch (RemoteException e) {
@@ -418,8 +379,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_NR_ICON_TYPE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onNrIconType(result.mSlotId,
                                 result.mToken, result.mStatus, (NrIconType) result.mData);
                     } catch (RemoteException e) {
@@ -428,8 +387,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_QOS_PARAMETERS_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onQosParametersChanged(result.mSlotId,
                                 result.mError, (QosParametersResult) result.mData);
                     } catch (RemoteException e) {
@@ -438,8 +395,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SECURE_MODE_STATUS_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onSecureModeStatusChange(
                                 (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -448,8 +403,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SEND_USER_PREFERENCE_FOR_DATA_DURING_VOICE_CALL:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.
                                 onSendUserPreferenceForDataDuringVoiceCall(result.mSlotId,
                                 result.mToken, result.mStatus);
@@ -461,8 +414,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SEND_USER_PREFERENCE_CONFIG_FOR_DATA_DURING_CALL:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.
                                 onSendUserPreferenceConfigForDataDuringVoiceCall(
                                 result.mToken, result.mStatus);
@@ -474,8 +425,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SET_NR_CONFIG:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onSetNrConfig(result.mSlotId,
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -484,8 +433,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SIGNAL_STRENGTH:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onSignalStrength(result.mSlotId,
                                 result.mToken, result.mStatus, (SignalStrength) result.mData);
                     } catch (RemoteException e) {
@@ -494,8 +441,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SIM_TYPE_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onSimTypeChanged(
                                 (QtiSimType[]) result.mData);
                     } catch (RemoteException e) {
@@ -504,8 +449,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_UPPER_LAYER_IND_INFO:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onUpperLayerIndInfo(result.mSlotId,
                                 result.mToken, result.mStatus,
                                 (UpperLayerIndInfo) result.mData);
@@ -515,8 +458,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_QUERY_CALL_FORWARD_STATUS_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.queryCallForwardStatusResponse(
                                 result.mStatus, (QtiCallForwardInfo[]) result.mData);
                     } catch (RemoteException e) {
@@ -526,8 +467,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_CARRIER_INFO_FOR_IMSI_ENCRYPTION_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setCarrierInfoForImsiEncryptionResponse(
                                 result.mSlotId, result.mToken,
                                 (QRadioResponseInfo) result.mData);
@@ -539,8 +478,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_MSIM_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setMsimPreferenceResponse(result.mToken,
                                 result.mStatus);
                     } catch (RemoteException e) {
@@ -549,8 +486,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_NETWORK_SELECTION_MODE_AUTOMATIC_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setNetworkSelectionModeAutomaticResponse(
                                 result.mSlotId, result.mToken, result.mError);
                     } catch (RemoteException e) {
@@ -561,8 +496,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_NETWORK_SELECTION_MODE_MANUAL_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setNetworkSelectionModeManualResponse(
                                 result.mSlotId, result.mToken, result.mError);
                     } catch (RemoteException e) {
@@ -573,8 +506,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_SIM_TYPE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setSimTypeResponse(result.mToken,
                                 result.mStatus);
                     } catch (RemoteException e) {
@@ -583,8 +514,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_SMART_DDS_SWITCH_TOGGLE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setSmartDdsSwitchToggleResponse(
                                 result.mToken, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -594,8 +523,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_START_NETWORK_SCAN_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.startNetworkScanResponse(result.mSlotId,
                                 result.mToken, result.mError);
                     } catch (RemoteException e) {
@@ -604,8 +531,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_STOP_NETWORK_SCAN_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.stopNetworkScanResponse(result.mSlotId,
                                 result.mToken, result.mError);
                     } catch (RemoteException e) {
@@ -614,8 +539,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DUAL_DATA_CAPABILITY_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDualDataCapabilityChanged(
                                 result.mToken, result.mStatus, (boolean)result.mData);
                     } catch (RemoteException e) {
@@ -624,8 +547,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_DUAL_DATA_USER_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setDualDataUserPreferenceResponse(
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -636,8 +557,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_DUAL_DATA_RECOMMENDATION:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onDualDataRecommendation(
                                 (DualDataRecommendation)result.mData);
                     } catch (RemoteException e) {
@@ -646,8 +565,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_SIM_PERSO_UNLOCK_STATUS_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onSimPersoUnlockStatusChange(
                                 result.mSlotId, (QtiPersoUnlockStatus)result.mData);
                     } catch (RemoteException e) {
@@ -657,8 +574,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_CELLULAR_ROAMING_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setCellularRoamingPreferenceResponse(
                                 result.mSlotId, result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -669,8 +584,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_CIWLAN_AVAILABLE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onCiwlanAvailable(
                                 result.mSlotId, (boolean)result.mData);
                     } catch (RemoteException e) {
@@ -680,8 +593,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_CIWLAN_CONFIG_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onCiwlanConfigChange(
                                 result.mSlotId, (CiwlanConfig)result.mData);
                     } catch (RemoteException e) {
@@ -691,8 +602,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_CIWLAN_MODE_USER_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setCiwlanModeUserPreferenceResponse(
                                 result.mSlotId, result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -703,8 +612,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_ON_NR_ICON_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onNrIconChange(result.mSlotId,
                                 (NrIcon) result.mData);
                     } catch (RemoteException e) {
@@ -713,8 +620,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_QUERY_NR_ICON_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onNrIconResponse(result.mSlotId,
                                 result.mToken, result.mStatus, (NrIcon) result.mData);
                     } catch (RemoteException e) {
@@ -723,8 +628,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_DATA_PRIORITY_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setDataPriorityPreferenceResponse(
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -734,8 +637,6 @@ public class ExtPhoneCallbackListener {
                     break;
                 case EVENT_SET_TURBO_DSDA_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setTurboDsdaPreferenceResponse(
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -746,8 +647,6 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_ON_TRAFFIC_PROTECTION_STATUS_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onTrafficProtectionStatusChanged(
                                 result.mSlotId, (boolean) result.mData);
                     } catch (RemoteException e) {
@@ -758,8 +657,6 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_ON_QCARE_LOGGING_STATUS_CHANGED:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onQcareLoggingStatusChange(
                                 (int) result.mData);
                     } catch (RemoteException e) {
@@ -770,8 +667,6 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_GET_RADIO_ICON_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onRadioIconResponse(result.mSlotId,
                                 result.mToken, result.mStatus,
                                 (com.qti.extphone.RadioIcon) result.mData);
@@ -782,8 +677,6 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_ON_RADIO_ICON_CHANGE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.onRadioIconChange(result.mSlotId,
                                 (com.qti.extphone.RadioIcon) result.mData);
                     } catch (RemoteException e) {
@@ -793,8 +686,6 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_SET_NR5G_NTN_PREFERENCE_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.setNr5gNtnPreferenceResponse(result.mSlotId,
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
@@ -804,12 +695,29 @@ public class ExtPhoneCallbackListener {
 
                 case EVENT_SEND_DATA_STALL_STATUS_RESPONSE:
                     try {
-                        IExtPhoneCallbackStub.Result result =
-                                (IExtPhoneCallbackStub.Result) msg.obj;
                         extPhoneCallbackListener.sendDataStallStatusResponse(result.mSlotId,
                                 result.mToken, result.mStatus);
                     } catch (RemoteException e) {
                         Log.e(TAG, "EVENT_SEND_DATA_STALL_STATUS_RESPONSE : Exception = " + e);
+                    }
+                    break;
+
+                case EVENT_ON_AUXILIARY_RADIO_ICON_INFO_CHANGE:
+                    try {
+                        extPhoneCallbackListener.onAuxiliaryRadioIconInfoChange(
+                                (com.qti.extphone.AuxiliaryRadioIconInfo) result.mData);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_ON_AUXILIARY_RADIO_ICON_INFO_CHANGE: Exception = " + e);
+                    }
+                    break;
+
+                case EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE:
+                    try {
+                        extPhoneCallbackListener.onAuxiliaryRadioIconInfoResponse(
+                                result.mToken, result.mStatus,
+                                (com.qti.extphone.AuxiliaryRadioIconInfo) result.mData);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE: Exception = " + e);
                     }
                     break;
 
@@ -1158,6 +1066,17 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: sendDataStallStatusResponse: slotId = " + slotId +
                 ", token = " + token + ", status = " + status);
+    }
+
+    public void onAuxiliaryRadioIconInfoChange(
+            com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoChange: auxIconInfo = " + auxIconInfo);
+    }
+
+    public void onAuxiliaryRadioIconInfoResponse(Token token, Status status,
+            com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoResponse: token = " + token
+                + ", status = " + status + ", auxIconInfo = " + auxIconInfo);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1560,6 +1479,20 @@ public class ExtPhoneCallbackListener {
                 throws RemoteException {
             send(EVENT_SEND_DATA_STALL_STATUS_RESPONSE, 0, 0,
                     new Result(slotId, token, status, 0, null));
+        }
+
+        @Override
+        public void onAuxiliaryRadioIconInfoChange(
+                com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
+            send(EVENT_ON_AUXILIARY_RADIO_ICON_INFO_CHANGE, 0, 0,
+                    new Result(UNUSED_SLOT_ID, null, null, -1, auxIconInfo));
+        }
+
+        @Override
+        public void onAuxiliaryRadioIconInfoResponse(Token token, Status status,
+                com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
+            send(EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE, 0, 0,
+                    new Result(UNUSED_SLOT_ID, token, status, -1, auxIconInfo));
         }
 
         class Result {
