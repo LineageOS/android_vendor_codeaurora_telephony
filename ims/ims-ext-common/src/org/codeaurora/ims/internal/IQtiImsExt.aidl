@@ -451,4 +451,14 @@ interface IQtiImsExt {
      * @return boolean true if the feature is supported, false otherwise
      */
     boolean isDeactivateAllCallBarringSupported(int phoneId);
+
+    /**
+     * Checks whether Intelligent Calling feature is supported
+     * Intelligent Calling feature allows a call to be placed on a 3rd party
+     * VoIP application based on specific error codes
+     *
+     * @param phoneId indicates the phone instance which triggered the request
+     * @return boolean true if the feature is supported, false otherwise
+     */
+    boolean isIntelligentCallingFeatureSupported(int phoneId);
 }

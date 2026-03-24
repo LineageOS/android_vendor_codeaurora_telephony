@@ -4,6 +4,7 @@ java_library {
     provides_uses_lib: "ims-ext-common",
     installable: true,
     sdk_version: "system_current",
+    min_sdk_version: "36",
     aidl: {
         local_include_dirs: ["src/org"],
         include_dirs: [

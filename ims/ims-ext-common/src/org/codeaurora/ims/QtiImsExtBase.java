@@ -370,6 +370,14 @@ public abstract class QtiImsExtBase {
                     "isDeactivateAllCallBarringSupported", mExecutor,
                     QtiImsExtUtils.READ_PHONE_STATE, mContext);
         }
+
+        @Override
+        public boolean isIntelligentCallingFeatureSupported(int phoneId) throws RemoteException {
+            return QtiImsExtUtils.executeMethodAsyncForResult(() ->
+                    QtiImsExtBase.this.onIsIntelligentCallingFeatureSupported(phoneId),
+                    "isIntelligentCallingFeatureSupported", mExecutor,
+                    QtiImsExtUtils.READ_PHONE_STATE, mContext);
+        }
     };
 
     private QtiImsExtBinder mQtiImsExtBinder;
@@ -546,6 +554,11 @@ public abstract class QtiImsExtBase {
     }
 
     protected boolean isDeactivateAllCallBarringSupported(int phoneId) {
+        // no-op
+        return false;
+    }
+
+    protected boolean onIsIntelligentCallingFeatureSupported(int phoneId) {
         // no-op
         return false;
     }

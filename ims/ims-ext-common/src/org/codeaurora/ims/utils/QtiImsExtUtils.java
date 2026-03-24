@@ -26,9 +26,9 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * Changes from Qualcomm Innovation Center are provided under the following license:
- *
- * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted (subject to the limitations in the
@@ -994,6 +994,22 @@ public class QtiImsExtUtils {
     public static boolean isGlassesFree3DVideoSupported(int phoneId, Context context) {
         return isCarrierConfigEnabled(phoneId, context,
                 QtiCarrierConfigs.KEY_CARRIER_GLASSES_FREE_3D_VIDEO_SUPPORTED);
+    }
+
+    public static void setIntelligentCallingFeature(ContentResolver contentResolver, int phoneId,
+            boolean value) {
+        android.provider.Settings.Global.putInt(contentResolver,
+                QtiCallConstants.INTELLIGENT_CALLING_FEATURE + phoneId,
+                value ? QtiCallConstants.INTELLIGENT_CALLING_ENABLED :
+                QtiCallConstants.INTELLIGENT_CALLING_DISABLED);
+    }
+
+    public static boolean isIntelligentCallingFeatureEnabled(ContentResolver contentResolver,
+            int phoneId) {
+        return android.provider.Settings.Global.getInt(contentResolver,
+                QtiCallConstants.INTELLIGENT_CALLING_FEATURE + phoneId,
+                QtiCallConstants.INTELLIGENT_CALLING_DISABLED) ==
+                QtiCallConstants.INTELLIGENT_CALLING_ENABLED;
     }
 
     private static void enforceCallingOrSelfModifyPhoneState(Context context,

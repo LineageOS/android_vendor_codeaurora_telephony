@@ -26,7 +26,7 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
- * Copyright (c) 2022-2025 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -155,6 +155,10 @@ public class QtiCallConstants {
     public static final int CODE_BUSY_EVERYWHERE = 3019;
 
     public static final int CODE_NOT_ACCEPTABLE_GLOBAL = 3020;
+
+    public static final int CODE_RINGING_RINGBACK_TIMEOUT = 3021;
+
+    public static final int CODE_NO_ANSWER_FROM_USER = 3022;
 
     // Default code to use for additional call info code.
     public static final int CODE_UNSPECIFIED = -1;
@@ -650,4 +654,9 @@ public class QtiCallConstants {
     public static final int STATE_ALT_BIDIRECTIONAL = STATE_ALT_TX_ENABLED | STATE_ALT_RX_ENABLED;
     public static final int STATE_DUAL_BIDIRECTIONAL =
             VideoProfile.STATE_BIDIRECTIONAL | STATE_ALT_BIDIRECTIONAL;
+
+    // Intelligent calling/dialing feature setting
+    public static final String INTELLIGENT_CALLING_FEATURE = "qti.settings.intelligent_calling";
+    public static final int INTELLIGENT_CALLING_DISABLED = 0;
+    public static final int INTELLIGENT_CALLING_ENABLED = 1;
 }
