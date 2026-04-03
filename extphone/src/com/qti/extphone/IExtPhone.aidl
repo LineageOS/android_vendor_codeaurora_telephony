@@ -42,6 +42,7 @@ import com.qti.extphone.CiwlanConfig;
 import com.qti.extphone.Client;
 import com.qti.extphone.DataPriorityPreference;
 import com.qti.extphone.DataStallInfo;
+import com.qti.extphone.DualDataRecommendation;
 import com.qti.extphone.IDepersoResCallback;
 import com.qti.extphone.IExtPhoneCallback;
 import com.qti.extphone.MsimPreference;
@@ -852,4 +853,13 @@ interface IExtPhone {
      * @see IExtPhoneCallback#onAuxiliaryRadioIconInfoResponse
      */
     Token getAuxiliaryRadioIconInfo(in Client client);
+
+    /**
+     * Get current dual data recommendation
+     *
+     * @param callingPackageName for which package is calling this API.
+     * @return DualDataRecommendation object if there, otherwise null.
+     * Requires permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
+     */
+    DualDataRecommendation getDualDataRecommendation(in String callingPackageName);
 }

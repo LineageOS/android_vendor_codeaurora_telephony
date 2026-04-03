@@ -1215,6 +1215,8 @@ public class ExtTelephonyManager {
      * It is a static modem capability.
      *
      * @return - boolean TRUE/FALSE based on modem supporting dual data capability feature.
+     *
+     * Requires Permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
      */
     public boolean getDualDataCapability() {
         if (isServiceConnected()) {
@@ -1252,6 +1254,24 @@ public class ExtTelephonyManager {
             Log.e(LOG_TAG, "setDualDataUserPreference ended in remote exception", e);
         }
         return token;
+    }
+
+    /**
+     * Get current dual data recommendation
+     *
+     * @return DualDataRecommendation object when there, otherwise null.
+     *
+     * Requires Permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
+     */
+    public DualDataRecommendation getDualDataRecommendation() {
+        if (isServiceConnected()) {
+            try {
+                return mExtTelephonyService.getDualDataRecommendation(getCurrentPackageName());
+            } catch (RemoteException ex) {
+                Log.e(LOG_TAG, "getDualDataRecommendation Failed.", ex);
+            }
+        }
+        return null;
     }
 
     /**
@@ -1725,6 +1745,14 @@ public class ExtTelephonyManager {
         }
 
         return token;
+    }
+
+    private String getCurrentPackageName() {
+        String callingPackageName = "";
+        if (mContext != null) {
+            callingPackageName = mContext.getOpPackageName();
+        }
+        return callingPackageName;
     }
 
     private void log(String str) {
