@@ -76,9 +76,6 @@ public class QtiCarrierConfigs {
     private QtiCarrierConfigs() {
     }
 
-    /* Flag specifying whether video calls are supported if device is in low battery or not */
-    public static final String ALLOW_VIDEO_CALL_IN_LOW_BATTERY = "allow_video_call_in_low_battery";
-
     /**
      * Flag indicating whether preview video needs to be hidden during
      * video conference call.
