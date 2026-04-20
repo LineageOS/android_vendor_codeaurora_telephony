@@ -600,4 +600,13 @@ interface IExtPhoneCallback {
      */
     void onAuxiliaryRadioIconInfoResponse(in Token token, in Status status,
                                           in AuxiliaryRadioIconInfo auxIconInfo);
+
+    /**
+     * Response to setNbTnPreference
+     *
+     * @param slotId - Slot ID for which this response is sent
+     * @param token - This is the same token which is sent from setNbTnPreference
+     * @param status - SUCCESS/FAILURE based on the modem result code
+     */
+    void onSetNbTnPreferenceResponse(int slotId, in Token token, in Status status);
 }

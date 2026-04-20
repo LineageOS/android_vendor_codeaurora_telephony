@@ -862,4 +862,18 @@ interface IExtPhone {
      * Requires permission: android.Manifest.permission.READ_PRIVILEGED_PHONE_STATE
      */
     DualDataRecommendation getDualDataRecommendation(in String callingPackageName);
+
+    /**
+     * Set Narrowband Terrestrial Network (NB-TN) preference.
+     *
+     * NB-TN, also known as NB-IoT (Internet of Things), is a subset of the LTE standard which can
+     * support low data/delay-tolerant data applications and in case of mobile, it is used as
+     * coverage extension when regular 5G/4G/3G is not available.
+     *
+     * @param slotId - slot ID which the request applies to
+     * @param client - Client registered with package name to receive callbacks
+     * @param enable - true to enable the NB TN feature, false to disable
+     * @return - Integer Token can be used to compare with the response.
+     */
+    Token setNbTnPreference(int slotId, in Client client, boolean enable);
 }

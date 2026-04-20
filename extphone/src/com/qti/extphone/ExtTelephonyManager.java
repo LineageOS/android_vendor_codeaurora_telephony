@@ -93,6 +93,7 @@ public class ExtTelephonyManager {
     public static final int FEATURE_NR_5G_NTN                              = FEATURE_BASE + 14;
     public static final int FEATURE_SEND_DATA_STALL_INFO                   = FEATURE_BASE + 15;
     public static final int FEATURE_AUXILIARY_RADIO_ICON_INFO              = FEATURE_BASE + 16;
+    public static final int FEATURE_SET_NB_TN_PREFERENCE                   = FEATURE_BASE + 17;
 
     private static ExtTelephonyManager mInstance;
 
@@ -136,21 +137,24 @@ public class ExtTelephonyManager {
     /** SNPN access mode */
     public static final int ACCESS_MODE_SNPN = 2;
 
-    /* DATA++DATA feature's global system settings name */
+    /* DATA++DATA feature's global system setting name */
     public static final String DUAL_DATA_PREFERENCE = "dual_data_preference";
 
     /* Default dual data preference setting*/
     public static final int DEFAULT_DUAL_DATA_PREFERENCE = 0;
 
-    /* Data throughput priority subscription feature's global system settings name  */
+    /* Data throughput priority subscription feature's global system setting name  */
     public static final String DATA_THROUGHPUT_PRIORITY_SUB_PREFERENCE =
             "data_throughput_priority_sub";
 
-    /* Turbo DSDA feature's global system settings name  */
+    /* Turbo DSDA feature's global system setting name  */
     public static final String TURBO_DSDA_PREFERENCE = "turbo_dsda";
 
-    /* NR5G NTN mode's global system settings name  */
+    /* NR5G NTN mode's global system setting name  */
     public static final String NR5G_NTN_MODE_PREFERENCE = "nr5g_ntn_mode";
+
+    /* NB-TN mode's global system setting name  */
+    public static final String NB_TN_MODE_PREFERENCE = "nb_tn_mode";
 
     /**
     * Constructor
@@ -1427,6 +1431,38 @@ public class ExtTelephonyManager {
             token = mExtTelephonyService.sendDataStallStatus(slotId, client, info);
         } catch (RemoteException ex) {
             Log.e(LOG_TAG, "sendDataStallStatus failed.", ex);
+            throw ex;
+        }
+        return token;
+    }
+
+    /**
+     * Set Narrowband Terrestrial Network (NB-TN) preference.
+     *
+     * NB-TN, also known as NB-IoT (Internet of Things), is a subset of the LTE standard which can
+     * support low data/delay-tolerant data applications and in case of mobile, it is used as
+     * coverage extension when regular 5G/4G/3G is not available.
+     *
+     * @param slotId - slot ID which the request applies to
+     * @param client - Client registered with package name to receive callbacks
+     * @param enable - true to enable the NB TN feature, false to disable
+     * @return - Integer Token can be used to compare with the response.
+     */
+    public Token setNbTnPreference(int slotId, Client client, boolean enable)
+            throws RemoteException {
+        Token token = null;
+        if (!isServiceConnected()) {
+            Log.e(LOG_TAG, "setNbTnPreference: service not connected!");
+            return token;
+        }
+        if (client == null) {
+            Log.e(LOG_TAG, "setNbTnPreference: invalid parameters");
+            return token;
+        }
+        try {
+            token = mExtTelephonyService.setNbTnPreference(slotId, client, enable);
+        } catch (RemoteException ex) {
+            Log.e(LOG_TAG, "setNbTnPreference failed.", ex);
             throw ex;
         }
         return token;
