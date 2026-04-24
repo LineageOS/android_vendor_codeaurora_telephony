@@ -87,6 +87,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.IOException;
 import java.lang.IllegalArgumentException;
 import java.lang.SecurityException;
@@ -319,22 +320,41 @@ public class QtiImsExtUtils {
         return inSampleSize;
     }
 
+    // Helper method used to decode a bitmap from the given Uri with InputStream.
+    private static Bitmap decodeStream(ContentResolver cr, Uri uri, BitmapFactory.Options o) {
+        if (cr == null || uri == null || o == null) {
+            Log.e(LOG_TAG, "decodeStream: Invalid parameters.");
+            return null;
+        }
+        try (InputStream s = cr.openInputStream(uri)) {
+            if (s == null) {
+                Log.e(LOG_TAG, "Failed to open input stream for uri: " + uri);
+                return null;
+            }
+            return BitmapFactory.decodeStream(s, null, o);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "IO error decoding uri: " + uri + " exception: " + e);
+            return null;
+        }
+    }
+
     /**
      * Decodes an image pointed to by uri as per requested Width and requested Height
      * and returns a bitmap
      */
     public static Bitmap decodeImage(String uriStr, Context context, int reqWidth, int reqHeight) {
-        if (uriStr == null) {
+        if (uriStr == null || context == null) {
             return null;
         }
-        ParcelFileDescriptor parcelFileDescriptor = null;
-
+        ContentResolver contentResolver = context.getContentResolver();
+        if (contentResolver == null) {
+            Log.e(LOG_TAG, "ContentResolver is null for context");
+            return null;
+        }
         Uri uri = Uri.parse(uriStr);
+        String scheme = uri.getScheme();
 
         try {
-            parcelFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r");
-            FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-
             BitmapFactory.Options options = new BitmapFactory.Options();
             // Each pixel is stored on 4 bytes
             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
@@ -343,32 +363,61 @@ public class QtiImsExtUtils {
                will still be set, allowing the caller to query the bitmap
                without having to allocate the memory for its pixels */
             options.inJustDecodeBounds = true;
-            BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
-
-            // Calculate inSampleSize
-            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-            // Decode bitmap with inSampleSize set
-            options.inJustDecodeBounds = false;
-            Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
-
-            return scaleImage(image, reqWidth, reqHeight);
-        } catch (FileNotFoundException e) {
-            Log.e(LOG_TAG, "File not found for uri: " + uri + " exception : " + e);
+            Bitmap first, second = null;
+            // Decode the image with android.resource:// Uri.
+            // In this branch the URI points to a drawable inside some APK.
+            // We need to open the resource via ContentResolver instead of treating it
+            // as a regular file URI.
+            if (ContentResolver.SCHEME_ANDROID_RESOURCE.equals(scheme)) {
+                // First decode with inJustDecodeBounds=true to get raw dimensions.
+                first = decodeStream(contentResolver, uri, options);
+                if(first == null && (options.outWidth <= 0 || options.outHeight <= 0)) {
+                    Log.e(LOG_TAG, "Failed to decode bounds for uri: " + uri);
+                    return null;
+                }
+                // Calculate inSampleSize
+                options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+                // Decode bitmap with inSampleSize set
+                options.inJustDecodeBounds = false;
+                // Second decode with inJustDecodeBounds=false to get complete image.
+                // We cannot reuse the same InputStream for the real decode because
+                // decodeStream() will consume the stream. So we have to reopen the
+                // InputStream and decode again using the calculated inSampleSize.
+                second = decodeStream(contentResolver, uri, options);
+            } else {
+                try (ParcelFileDescriptor parcelFileDescriptor =
+                        contentResolver.openFileDescriptor(uri, "r")) {
+                    if (parcelFileDescriptor == null) {
+                        Log.e(LOG_TAG, "ParcelFileDescriptor is null for uri: " + uri);
+                        return null;
+                    }
+                    FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+                    first = BitmapFactory.decodeFileDescriptor(
+                        fileDescriptor, null, options);
+                    if(first == null && (options.outWidth <= 0 || options.outHeight <= 0)) {
+                        Log.e(LOG_TAG, "Failed to decode bounds for uri: " + uri);
+                        return null;
+                    }
+                    // Calculate inSampleSize
+                    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+                    // Decode bitmap with inSampleSize set
+                    options.inJustDecodeBounds = false;
+                    second = BitmapFactory.decodeFileDescriptor(fileDescriptor, null, options);
+                } catch (FileNotFoundException e) {
+                    Log.e(LOG_TAG, "File not found for uri: " + uri + " exception : " + e);
+                    return null;
+                } catch (IOException e) {
+                    Log.e(LOG_TAG, "IO error decoding file uri: " + uri + " exception: " + e);
+                    return null;
+                }
+            }
+            return scaleImage(second, reqWidth, reqHeight);
         } catch (IllegalArgumentException e) {
             Log.e(LOG_TAG, "Check arguments passed to decodeFileDescriptor, exception : " + e);
         } catch (SecurityException e) {
             //If the selected static image file located under file path "/sdcard/" is deleted,
             //SecurityException is thrown by ContentResolver#openFileDescriptor.
             Log.e(LOG_TAG, "SecurityException, exception : " + e);
-        } finally {
-            try {
-                if (parcelFileDescriptor != null) {
-                    parcelFileDescriptor.close();
-                }
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "Closing parcelFileDescriptor " + " exception : " + e);
-            }
         }
         return null;
     }
