@@ -535,10 +535,6 @@ public class QtiCallConstants {
     public static final int CALL_PROGRESS_INFO_TYPE_CALL_WARNING = 5;
     //Call progress info call rejection code
     public static final int CALL_REJECTION_CODE_INVALID = -1;
-    //Call progress info extras
-    public static final String EXTRAS_CALL_PROGRESS_INFO_TYPE = "CallProgInfoType";
-    public static final String EXTRAS_CALL_PROGRESS_REASON_CODE = "CallProgReasonCode";
-    public static final String EXTRAS_CALL_PROGRESS_REASON_TEXT = "CallProgReasonText";
 
     //Call waiting/forwarding/remote available progress info extra
     public static final String EXTRAS_CALL_PROGRESS_WFA_TYPE = "CallProgWfaType";
