@@ -100,6 +100,7 @@ public class ExtPhoneCallbackListener {
     public static final int EVENT_SEND_DATA_STALL_STATUS_RESPONSE = 60;
     public static final int EVENT_ON_AUXILIARY_RADIO_ICON_INFO_CHANGE = 61;
     public static final int EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE = 62;
+    public static final int EVENT_SET_NB_TN_PREFERENCE_RESPONSE = 63;
 
     private static final int UNUSED_ARGUMENT = 0;
     private static final int UNUSED_SLOT_ID = -1;
@@ -721,6 +722,15 @@ public class ExtPhoneCallbackListener {
                     }
                     break;
 
+                case EVENT_SET_NB_TN_PREFERENCE_RESPONSE:
+                    try {
+                        extPhoneCallbackListener.onSetNbTnPreferenceResponse(
+                                result.mSlotId, result.mToken, result.mStatus);
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "EVENT_SET_NB_TN_PREFERENCE_RESPONSE : Exception = " + e);
+                    }
+                    break;
+
                 default :
                     Log.d(TAG, "default : " + msg.what);
             }
@@ -991,7 +1001,7 @@ public class ExtPhoneCallbackListener {
             throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: setCellularRoamingPreferenceResponse: slotId = " + slotId
                 + " token = " + token + " status = " + status);
-   }
+    }
 
     public void onCiwlanAvailable(int slotId, boolean ciwlanAvailable)
             throws RemoteException {
@@ -1077,6 +1087,12 @@ public class ExtPhoneCallbackListener {
             com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
         Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoResponse: token = " + token
                 + ", status = " + status + ", auxIconInfo = " + auxIconInfo);
+    }
+
+    public void onSetNbTnPreferenceResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+        Log.d(TAG, "UNIMPLEMENTED: onSetNbTnPreferenceResponse: slotId = " + slotId
+                + ", token = " + token + ", status = " + status);
     }
 
     private static class IExtPhoneCallbackStub extends IExtPhoneCallback.Stub {
@@ -1493,6 +1509,13 @@ public class ExtPhoneCallbackListener {
                 com.qti.extphone.AuxiliaryRadioIconInfo auxIconInfo) throws RemoteException {
             send(EVENT_ON_AUXILIARY_RADIO_ICON_INFO_RESPONSE, 0, 0,
                     new Result(UNUSED_SLOT_ID, token, status, -1, auxIconInfo));
+        }
+
+        @Override
+        public void onSetNbTnPreferenceResponse(int slotId, Token token, Status status)
+                throws RemoteException {
+            send(EVENT_SET_NB_TN_PREFERENCE_RESPONSE, 0, 0,
+                    new Result(slotId, token, status, 0, null));
         }
 
         class Result {

@@ -388,4 +388,9 @@ public class ExtPhoneCallbackBase extends IExtPhoneCallback.Stub {
         Log.d(TAG, "UNIMPLEMENTED: onAuxiliaryRadioIconInfoResponse: token = " + token
                 + " status = " + status + " auxIconInfo = " + auxIconInfo);
     }
+
+    @Override
+    public void onSetNbTnPreferenceResponse(int slotId, Token token, Status status)
+            throws RemoteException {
+    }
 }
