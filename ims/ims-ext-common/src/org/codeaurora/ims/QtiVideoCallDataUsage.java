@@ -178,12 +178,18 @@ public class QtiVideoCallDataUsage implements Parcelable {
     @Override
     public String toString() {
         if(mDataUsage != null) {
-            String msg = "";
+            StringBuilder msg = new StringBuilder();
             String[] text = mUseMotoExt ? TEXT_MOTO : TEXT;
+
             for (int i = 0; i < mDataUsage.length; i++) {
-                msg += text[i] + mDataUsage[i];
+                if (i < text.length) {
+                    msg.append(text[i]);
+                } else {
+                    msg.append("DataUsage[").append(i).append("] = ");
+                }
+                msg.append(mDataUsage[i]);
             }
-            return msg;
+            return msg.toString();
         }
         return null;
     }
