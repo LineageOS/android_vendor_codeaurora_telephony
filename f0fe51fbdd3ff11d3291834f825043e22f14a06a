@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22e46cac_30177abf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 22176
+      },
+      "writtenOn": "2026-11-18T12:18:28Z",
+      "side": 1,
+      "message": "11-18 00:48:15.835  3721  3721 E AndroidRuntime: FATAL EXCEPTION: main\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: Process: org.codeaurora.ims, PID: 3721\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: java.lang.ArrayIndexOutOfBoundsException: length\u003d4; index\u003d4\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat org.codeaurora.ims.QtiVideoCallDataUsage.toString(QtiVideoCallDataUsage.java:184)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat java.lang.String.valueOf(String.java:4788)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat java.lang.StringBuilder.append(StringBuilder.java:183)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat com.qualcomm.ims.vt.MediaController.onDataUsageChanged(MediaController.java:465)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat com.qualcomm.ims.vt.ImsMedia.handleMessage(ImsMedia.java:1324)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat android.os.Handler.dispatchMessageImpl(Handler.java:142)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat android.os.Handler.dispatchMessage(Handler.java:125)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat android.os.Looper.loopOnce(Looper.java:296)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat android.os.Looper.loop(Looper.java:397)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat android.app.ActivityThread.main(ActivityThread.java:9523)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat java.lang.reflect.Method.invoke(Native Method)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)\n11-18 00:48:15.835  3721  3721 E AndroidRuntime: \tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)\n\nfixed vilte on rtwo",
+      "revId": "f0fe51fbdd3ff11d3291834f825043e22f14a06a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
