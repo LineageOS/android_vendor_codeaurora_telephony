@@ -52,13 +52,19 @@ public class QtiVideoCallDataUsage implements Parcelable {
     private static final String[] TEXT =
             {"WwanDataUsage = "," WlanDataUsage = ", " CIWlanDataUsage = "};
 
-    // Motorola specific
+    // Motorola specific. libimsmedia_jni reports one value per RAT and
+    // direction, RAT first (WWAN/LTE, WLAN, C-IWLAN), direction 0 (TX)
+    // then 1 (RX). Older Motorola stacks only report the first four values.
     public static final int DATA_USAGE_LTE_TX = 0;
     public static final int DATA_USAGE_LTE_RX = 1;
     public static final int DATA_USAGE_WLAN_TX = 2;
     public static final int DATA_USAGE_WLAN_RX = 3;
+    public static final int DATA_USAGE_CIWLAN_TX = 4;
+    public static final int DATA_USAGE_CIWLAN_RX = 5;
     private static final String[] TEXT_MOTO = {
-        "LteTxDataUsage = ", " LteRxDataUsage = ", " WlanTxDataUsage = ", " WlanRxDataUsage = "
+        "LteTxDataUsage = ", " LteRxDataUsage = ",
+        " WlanTxDataUsage = ", " WlanRxDataUsage = ",
+        " CIWlanTxDataUsage = ", " CIWlanRxDataUsage = "
     };
     private static final String MOTO_VT_PROP = "ro.qcom.ims.use_moto_vt_ext";
     private final boolean mUseMotoExt;
@@ -144,8 +150,25 @@ public class QtiVideoCallDataUsage implements Parcelable {
      * This method returns C_IWLAN Data Usage
      */
     public long getCiwlanDataUsage() {
+        if (mUseMotoExt) {
+            return mDataUsage.length > DATA_USAGE_CIWLAN_RX
+                    ? mDataUsage[DATA_USAGE_CIWLAN_TX] + mDataUsage[DATA_USAGE_CIWLAN_RX]
+                    : DATA_USAGE_INVALID_VALUE;
+        }
         return mDataUsage.length > DATA_USAGE_C_IWLAN ? mDataUsage[DATA_USAGE_C_IWLAN] :
                 DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getCiwlanTxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_CIWLAN_TX)
+                ? mDataUsage[DATA_USAGE_CIWLAN_TX]
+                : DATA_USAGE_INVALID_VALUE;
+    }
+
+    public long getCiwlanRxDataUsage() {
+        return (mUseMotoExt && mDataUsage.length > DATA_USAGE_CIWLAN_RX)
+                ? mDataUsage[DATA_USAGE_CIWLAN_RX]
+                : DATA_USAGE_INVALID_VALUE;
     }
 
     @Override
